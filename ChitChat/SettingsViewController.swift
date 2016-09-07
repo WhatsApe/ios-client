@@ -15,7 +15,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let tap = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        let tap = UITapGestureRecognizer(target: self, action: #selector(SettingsViewController.DismissKeyboard))
     }
     
     override func viewWillAppear(animated: Bool) {
