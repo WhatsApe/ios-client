@@ -25,9 +25,14 @@ class SettingsViewController: UIViewController {
             passwordTextField.hidden = true
             validateButton.setTitle("Disconnect", forState: UIControlState.Normal)
         } else if NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myJID) != "kXMPPmyJID" {
-            let username = NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myJID)
-            usernameTextField.text = username!.componentsSeparatedByString("@")[0]
             passwordTextField.text = NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myPassword)
+            let username = NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myJID)
+            guard let unwrappedUsername = username else {
+                print("error getting username")
+                usernameTextField.text = ""
+                return
+            }
+            usernameTextField.text = unwrappedUsername.componentsSeparatedByString("@")[0]
         }
     }
     
