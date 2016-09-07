@@ -1,0 +1,180 @@
+PODS:
+  - CocoaAsyncSocket (7.4.3):
+    - CocoaAsyncSocket/All (= 7.4.3)
+  - CocoaAsyncSocket/All (7.4.3):
+    - CocoaAsyncSocket/GCD
+    - CocoaAsyncSocket/RunLoop
+  - CocoaAsyncSocket/GCD (7.4.3)
+  - CocoaAsyncSocket/RunLoop (7.4.3)
+  - CocoaLumberjack (1.9.2):
+    - CocoaLumberjack/Extensions (= 1.9.2)
+  - CocoaLumberjack/Core (1.9.2)
+  - CocoaLumberjack/Extensions (1.9.2):
+    - CocoaLumberjack/Core
+  - FMDB (1.5.1)
+  - JSQMessagesViewController (7.3.4):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
+  - xmpp-messenger-ios (1.0.1):
+    - FMDB (~> 1.0)
+    - JSQMessagesViewController
+    - JSQSystemSoundPlayer (~> 2.0)
+    - XMPPFramework
+  - XMPPFramework (3.6.6):
+    - XMPPFramework/Authentication (= 3.6.6)
+    - XMPPFramework/BandwidthMonitor (= 3.6.6)
+    - XMPPFramework/Categories (= 3.6.6)
+    - XMPPFramework/Core (= 3.6.6)
+    - XMPPFramework/CoreDataStorage (= 3.6.6)
+    - XMPPFramework/GoogleSharedStatus (= 3.6.6)
+    - XMPPFramework/KissXML (= 3.6.6)
+    - XMPPFramework/ProcessOne (= 3.6.6)
+    - XMPPFramework/Reconnect (= 3.6.6)
+    - XMPPFramework/Roster (= 3.6.6)
+    - XMPPFramework/SystemInputActivityMonitor (= 3.6.6)
+    - XMPPFramework/Utilities (= 3.6.6)
+    - XMPPFramework/XEP-0009 (= 3.6.6)
+    - XMPPFramework/XEP-0012 (= 3.6.6)
+    - XMPPFramework/XEP-0016 (= 3.6.6)
+    - XMPPFramework/XEP-0045 (= 3.6.6)
+    - XMPPFramework/XEP-0054 (= 3.6.6)
+    - XMPPFramework/XEP-0059 (= 3.6.6)
+    - XMPPFramework/XEP-0060 (= 3.6.6)
+    - XMPPFramework/XEP-0065 (= 3.6.6)
+    - XMPPFramework/XEP-0066 (= 3.6.6)
+    - XMPPFramework/XEP-0082 (= 3.6.6)
+    - XMPPFramework/XEP-0085 (= 3.6.6)
+    - XMPPFramework/XEP-0092 (= 3.6.6)
+    - XMPPFramework/XEP-0100 (= 3.6.6)
+    - XMPPFramework/XEP-0106 (= 3.6.6)
+    - XMPPFramework/XEP-0115 (= 3.6.6)
+    - XMPPFramework/XEP-0136 (= 3.6.6)
+    - XMPPFramework/XEP-0153 (= 3.6.6)
+    - XMPPFramework/XEP-0172 (= 3.6.6)
+    - XMPPFramework/XEP-0184 (= 3.6.6)
+    - XMPPFramework/XEP-0191 (= 3.6.6)
+    - XMPPFramework/XEP-0198 (= 3.6.6)
+    - XMPPFramework/XEP-0199 (= 3.6.6)
+    - XMPPFramework/XEP-0202 (= 3.6.6)
+    - XMPPFramework/XEP-0203 (= 3.6.6)
+    - XMPPFramework/XEP-0223 (= 3.6.6)
+    - XMPPFramework/XEP-0224 (= 3.6.6)
+    - XMPPFramework/XEP-0280 (= 3.6.6)
+    - XMPPFramework/XEP-0297 (= 3.6.6)
+    - XMPPFramework/XEP-0308 (= 3.6.6)
+    - XMPPFramework/XEP-0333 (= 3.6.6)
+    - XMPPFramework/XEP-0335 (= 3.6.6)
+  - XMPPFramework/Authentication (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/BandwidthMonitor (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/Categories (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/Core (3.6.6):
+    - CocoaAsyncSocket (~> 7.4.1)
+    - CocoaLumberjack (~> 1.9)
+    - XMPPFramework/KissXML
+  - XMPPFramework/CoreDataStorage (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/GoogleSharedStatus (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/KissXML (3.6.6)
+  - XMPPFramework/ProcessOne (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/Reconnect (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/Roster (3.6.6):
+    - XMPPFramework/Core
+    - XMPPFramework/CoreDataStorage
+  - XMPPFramework/SystemInputActivityMonitor (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/Utilities (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0009 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0012 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0016 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0045 (3.6.6):
+    - XMPPFramework/Core
+    - XMPPFramework/CoreDataStorage
+    - XMPPFramework/XEP-0203
+  - XMPPFramework/XEP-0054 (3.6.6):
+    - XMPPFramework/Core
+    - XMPPFramework/Roster
+  - XMPPFramework/XEP-0059 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0060 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0065 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0066 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0082 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0085 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0092 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0100 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0106 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0115 (3.6.6):
+    - XMPPFramework/Core
+    - XMPPFramework/CoreDataStorage
+  - XMPPFramework/XEP-0136 (3.6.6):
+    - XMPPFramework/CoreDataStorage
+    - XMPPFramework/XEP-0085
+    - XMPPFramework/XEP-0203
+  - XMPPFramework/XEP-0153 (3.6.6):
+    - XMPPFramework/Core
+    - XMPPFramework/XEP-0054
+  - XMPPFramework/XEP-0172 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0184 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0191 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0198 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0199 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0202 (3.6.6):
+    - XMPPFramework/Core
+    - XMPPFramework/XEP-0082
+  - XMPPFramework/XEP-0203 (3.6.6):
+    - XMPPFramework/Core
+    - XMPPFramework/XEP-0082
+  - XMPPFramework/XEP-0223 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0224 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0280 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0297 (3.6.6):
+    - XMPPFramework/Core
+    - XMPPFramework/XEP-0203
+  - XMPPFramework/XEP-0308 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0333 (3.6.6):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0335 (3.6.6):
+    - XMPPFramework/Core
+
+DEPENDENCIES:
+  - xmpp-messenger-ios
+
+SPEC CHECKSUMS:
+  CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
+  CocoaLumberjack: 628fca2e88ef06f7cf6817309aa405f325d9a6fa
+  FMDB: 0c3eed7342fdf9dc03b8fe3d8de8e7a9f08bfacc
+  JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  xmpp-messenger-ios: e1a81270a0d62f1307c86b493209f01853e82e6b
+  XMPPFramework: b06c210b0b71c08aa41a646bffd2021fa43bb43b
+
+PODFILE CHECKSUM: 5b41e469aa743d8c449af51756637686cb7b7256
+
+COCOAPODS: 1.0.1

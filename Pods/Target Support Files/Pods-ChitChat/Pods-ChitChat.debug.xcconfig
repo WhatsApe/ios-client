@@ -1,0 +1,14 @@
+CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES
+EMBEDDED_CONTENT_CONTAINS_SWIFT = YES
+ENABLE_BITCODE = NO
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/CocoaAsyncSocket" "$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack" "$PODS_CONFIGURATION_BUILD_DIR/FMDB" "$PODS_CONFIGURATION_BUILD_DIR/JSQMessagesViewController" "$PODS_CONFIGURATION_BUILD_DIR/JSQSystemSoundPlayer" "$PODS_CONFIGURATION_BUILD_DIR/XMPPFramework" "$PODS_CONFIGURATION_BUILD_DIR/xmpp-messenger-ios"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) $(SDKROOT)/usr/include/libxml2 $(PODS_ROOT)/XMPPFramework/module $(SDKROOT)/usr/include/libresolv $(SDKROOT)/usr/include/libxml2 $(PODS_ROOT)/XMPPFramework/module
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+LIBRARY_SEARCH_PATHS = $(inherited) "$(PODS_ROOT)/XMPPFramework/Vendor/libidn"
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/CocoaAsyncSocket/CocoaAsyncSocket.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack/CocoaLumberjack.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/FMDB/FMDB.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/JSQMessagesViewController/JSQMessagesViewController.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/XMPPFramework/XMPPFramework.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/xmpp-messenger-ios/xmpp_messenger_ios.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"xml2" -framework "CocoaAsyncSocket" -framework "CocoaLumberjack" -framework "FMDB" -framework "JSQMessagesViewController" -framework "JSQSystemSoundPlayer" -framework "XMPPFramework" -framework "xmpp_messenger_ios"
+OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
+PODS_BUILD_DIR = $BUILD_DIR
+PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_ROOT = ${SRCROOT}/Pods
