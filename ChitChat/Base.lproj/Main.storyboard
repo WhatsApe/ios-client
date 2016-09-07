@@ -18,7 +18,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UCj-d0-pzs" id="g6J-vj-wY9">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -61,7 +61,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hq6-eH-3kd" id="2zK-eT-C8P">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -98,24 +98,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wHg-fa-7bT">
-                                <rect key="frame" x="252" y="233" width="97" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wHg-fa-7bT">
+                                <rect key="frame" x="100" y="176" width="400" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="acj-I3-PU9"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="sZH-JK-i2N" id="U1E-GV-VGu"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7n6-VV-EYL">
-                                <rect key="frame" x="252" y="293" width="97" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7n6-VV-EYL">
+                                <rect key="frame" x="100" y="231" width="400" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="lJA-zU-iAO"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="sZH-JK-i2N" id="2mB-Zx-gTa"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcI-mS-ezX">
-                                <rect key="frame" x="273" y="354" width="55" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcI-mS-ezX">
+                                <rect key="frame" x="225" y="287" width="150" height="40"/>
+                                <color key="backgroundColor" red="0.027908176311929378" green="0.4866067160989202" blue="0.91081730769230773" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Ffx-io-OVR"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Validate"/>
                                 <connections>
                                     <action selector="validate:" destination="sZH-JK-i2N" eventType="touchUpInside" id="SbT-YD-zBw"/>
@@ -123,6 +134,13 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7n6-VV-EYL" firstAttribute="top" secondItem="wHg-fa-7bT" secondAttribute="bottom" constant="25" id="4ih-Zm-iTX"/>
+                            <constraint firstItem="wHg-fa-7bT" firstAttribute="centerX" secondItem="eHx-QC-Psd" secondAttribute="centerX" id="QqW-43-5AF"/>
+                            <constraint firstItem="zcI-mS-ezX" firstAttribute="top" secondItem="7n6-VV-EYL" secondAttribute="bottom" constant="29" id="aqR-N0-Lzu"/>
+                            <constraint firstItem="zcI-mS-ezX" firstAttribute="centerX" secondItem="eHx-QC-Psd" secondAttribute="centerX" id="bN5-c4-Err"/>
+                            <constraint firstItem="7n6-VV-EYL" firstAttribute="centerX" secondItem="eHx-QC-Psd" secondAttribute="centerX" id="ypF-24-WKn"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0yL-9j-yeh">
                         <barButtonItem key="leftBarButtonItem" title="Done" id="TMx-yj-dye">
