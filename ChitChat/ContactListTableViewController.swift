@@ -14,11 +14,10 @@ import UIKit
 import XMPPFramework
 import xmpp_messenger_ios
 
-class ContactListTableViewController: UIViewController, OneRosterDelegate {
+class ContactListTableViewController: UITableViewController, OneRosterDelegate {
     
     var delegate:ContactPickerDelegate?
     
-    @IBOutlet var tableView: UITableView!
     @IBAction func closeWindow(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -39,7 +38,7 @@ class ContactListTableViewController: UIViewController, OneRosterDelegate {
         tableView.reloadData()
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sections: NSArray? =  OneRoster.buddyList.sections
         
         if section < sections!.count {
@@ -51,11 +50,11 @@ class ContactListTableViewController: UIViewController, OneRosterDelegate {
         return 0;
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return OneRoster.buddyList.sections!.count
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let sections: NSArray? = OneRoster.sharedInstance.fetchedResultsController()!.sections
         
         if section < sections!.count {
@@ -78,7 +77,7 @@ class ContactListTableViewController: UIViewController, OneRosterDelegate {
         return ""
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("OneCellReuse", forIndexPath: indexPath)
         let user = OneRoster.userFromRosterAtIndexPath(indexPath: indexPath)
         
@@ -94,7 +93,7 @@ class ContactListTableViewController: UIViewController, OneRosterDelegate {
         return cell!;
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         delegate?.didSelectContact(OneRoster.userFromRosterAtIndexPath(indexPath: indexPath))
         closeWindow(self)
     }

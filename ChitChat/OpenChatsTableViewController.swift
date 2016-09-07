@@ -10,10 +10,8 @@ import UIKit
 import XMPPFramework
 import xmpp_messenger_ios
 
-class OpenChatsTableViewController: UIViewController, OneRosterDelegate {
+class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
     
-    @IBOutlet var tableView: UITableView!
-
     var chatList = NSArray()
     
     override func viewDidLoad() {
@@ -68,15 +66,15 @@ class OpenChatsTableViewController: UIViewController, OneRosterDelegate {
         tableView.reloadData()
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return OneChats.getChatsList().count
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("OneCellReuse", forIndexPath: indexPath)
         let user = OneChats.getChatsList().objectAtIndex(indexPath.row) as! XMPPUserCoreDataStorageObject
         
@@ -90,11 +88,11 @@ class OpenChatsTableViewController: UIViewController, OneRosterDelegate {
         return cell!
     }
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.01
     }
     
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
     }
             

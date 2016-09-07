@@ -41,7 +41,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="1Y6-NX-THZ" id="WF0-RT-PYl"/>
                         <segue destination="io2-iN-4CR" kind="show" identifier="chats.to.chat" id="jYx-Ex-asW"/>
                     </connections>
                 </tableViewController>
@@ -79,9 +78,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="tableView" destination="EHC-37-k3J" id="lNf-dt-5tu"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgQ-v7-Dqi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
