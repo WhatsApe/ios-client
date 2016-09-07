@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5BBBA35776AAF9AAC9C07754 /* Pods_ChitChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 852A8D84BC6DC7B8F9C84BEA /* Pods_ChitChat.framework */; };
+		72CEDB451D8063F9005A3185 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CEDB441D8063F9005A3185 /* ChatViewController.swift */; };
+		72CEDB471D806407005A3185 /* ContactListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CEDB461D806407005A3185 /* ContactListTableViewController.swift */; };
 		C160D7F71D80169900E5D75C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C160D7F61D80169900E5D75C /* AppDelegate.swift */; };
 		C160D7F91D80169900E5D75C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C160D7F81D80169900E5D75C /* ViewController.swift */; };
 		C160D7FC1D80169900E5D75C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C160D7FA1D80169900E5D75C /* Main.storyboard */; };
@@ -20,6 +22,8 @@
 /* Begin PBXFileReference section */
 		235FCFA553745358F36AC0C4 /* Pods-ChitChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChitChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChitChat/Pods-ChitChat.release.xcconfig"; sourceTree = "<group>"; };
 		2FB67E78EF0F376701CA855D /* Pods-ChitChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChitChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChitChat/Pods-ChitChat.debug.xcconfig"; sourceTree = "<group>"; };
+		72CEDB441D8063F9005A3185 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		72CEDB461D806407005A3185 /* ContactListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactListTableViewController.swift; sourceTree = "<group>"; };
 		852A8D84BC6DC7B8F9C84BEA /* Pods_ChitChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChitChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C160D7F31D80169900E5D75C /* ChitChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChitChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C160D7F61D80169900E5D75C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +86,8 @@
 				C160D8021D80169900E5D75C /* Info.plist */,
 				C160D8081D801B8100E5D75C /* OpenChatsTableViewController.swift */,
 				C160D80E1D801CB100E5D75C /* SettingsViewController.swift */,
+				72CEDB441D8063F9005A3185 /* ChatViewController.swift */,
+				72CEDB461D806407005A3185 /* ContactListTableViewController.swift */,
 			);
 			path = ChitChat;
 			sourceTree = "<group>";
@@ -215,9 +221,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72CEDB471D806407005A3185 /* ContactListTableViewController.swift in Sources */,
 				C160D8091D801B8100E5D75C /* OpenChatsTableViewController.swift in Sources */,
 				C160D7F91D80169900E5D75C /* ViewController.swift in Sources */,
 				C160D7F71D80169900E5D75C /* AppDelegate.swift in Sources */,
+				72CEDB451D8063F9005A3185 /* ChatViewController.swift in Sources */,
 				C160D80F1D801CB100E5D75C /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

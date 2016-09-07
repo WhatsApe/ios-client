@@ -8,7 +8,7 @@
         <!--Open Chats Table View Controller-->
         <scene sceneID="NN5-gf-use">
             <objects>
-                <tableViewController id="EoI-PM-RKh" customClass="OpenChatsTableViewController" sceneMemberID="viewController">
+                <tableViewController id="EoI-PM-RKh" customClass="OpenChatsTableViewController" customModule="ChitChat" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1Y6-NX-THZ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -18,7 +18,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UCj-d0-pzs" id="g6J-vj-wY9">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -29,7 +29,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Liy-wP-W1F">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="vVA-9I-a9d"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="vVA-9I-a9d">
+                            <connections>
+                                <segue destination="rRj-yw-q4f" kind="presentation" identifier="chat.to.add" id="vW7-e8-LyN"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="6C2-gI-1Nk">
                             <connections>
                                 <segue destination="dlp-GR-q8B" kind="presentation" identifier="One.HomeToSettings" id="ecb-To-o9f"/>
@@ -43,6 +47,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UzI-vd-mbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1063" y="288"/>
+        </scene>
+        <!--Contact List Table View Controller-->
+        <scene sceneID="hE6-K2-1We">
+            <objects>
+                <tableViewController id="R7m-xv-dHo" customClass="ContactListTableViewController" customModule="ChitChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="EHC-37-k3J">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OneCellReuse" id="hq6-eH-3kd">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hq6-eH-3kd" id="2zK-eT-C8P">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="R7m-xv-dHo" id="IRs-OE-PvY"/>
+                            <outlet property="delegate" destination="R7m-xv-dHo" id="XE1-nL-Zg8"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="SIW-i6-2bY">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="xFs-iq-F6D">
+                            <connections>
+                                <action selector="closeWindow:" destination="R7m-xv-dHo" id="xOy-r9-PLa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="EHC-37-k3J" id="lNf-dt-5tu"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cgQ-v7-Dqi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1875" y="1047"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="rLL-h4-z1C">
@@ -97,7 +139,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iGe-UE-b9Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2595" y="304"/>
+            <point key="canvasLocation" x="2600" y="288"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="v2C-7a-5dm">
@@ -134,6 +176,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5U2-bF-Jcy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1839" y="288"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="S0e-Nq-ccv">
+            <objects>
+                <navigationController storyboardIdentifier="contactListNav" automaticallyAdjustsScrollViewInsets="NO" id="rRj-yw-q4f" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="J9u-Zh-EQz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="R7m-xv-dHo" kind="relationship" relationship="rootViewController" id="YVS-vN-kKe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZXe-Eh-oS7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1063" y="1047"/>
         </scene>
     </scenes>
 </document>
