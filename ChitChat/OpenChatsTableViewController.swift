@@ -38,6 +38,31 @@ class OpenChatsTableViewController: UIViewController, OneRosterDelegate {
         OneRoster.sharedInstance.delegate = nil
     }
     
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if identifier == "chat.to.add" {
+            if !OneChat.sharedInstance.isConnected() {
+                let alert = UIAlertController(title: "Attention", message: "You have to be connected to start a chat", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+                return false
+            }
+        }
+        return true
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
+        if segue?.identifier == "chats.to.chat" {
+            if let controller = segue?.destinationViewController as? ChatViewController {
+                if let cell: UITableViewCell? = sender as? UITableViewCell {
+                    let user = OneChats.getChatsList().objectAtIndex(tableView.indexPathForCell(cell!)!.row) as! XMPPUserCoreDataStorageObject
+                    controller.recipient = user
+                }
+            }
+        }
+    }
+    
     func oneRosterContentChanged(controller: NSFetchedResultsController) {
         //Will reload the tableView to reflect roster's changes
         tableView.reloadData()

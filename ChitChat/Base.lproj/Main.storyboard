@@ -31,7 +31,7 @@
                     <navigationItem key="navigationItem" id="Liy-wP-W1F">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="vVA-9I-a9d">
                             <connections>
-                                <segue destination="rRj-yw-q4f" kind="presentation" identifier="chat.to.add" id="vW7-e8-LyN"/>
+                                <segue destination="io2-iN-4CR" kind="show" identifier="chat.to.add" id="bI5-64-4BX"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="6C2-gI-1Nk">
@@ -42,6 +42,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="1Y6-NX-THZ" id="WF0-RT-PYl"/>
+                        <segue destination="io2-iN-4CR" kind="show" identifier="chats.to.chat" id="jYx-Ex-asW"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UzI-vd-mbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -84,7 +85,28 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgQ-v7-Dqi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1875" y="1047"/>
+            <point key="canvasLocation" x="2494" y="1167"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="dFF-gL-ja2">
+            <objects>
+                <viewController id="io2-iN-4CR" customClass="ChatViewController" customModule="ChitChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QVq-rq-3Ri"/>
+                        <viewControllerLayoutGuide type="bottom" id="biG-32-MxZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GYP-0L-EaX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="rRj-yw-q4f" kind="presentation" identifier="chat.to.contact" id="V6m-DB-fzY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IC2-SV-dav" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1063" y="1167"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="rLL-h4-z1C">
@@ -157,7 +179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iGe-UE-b9Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2600" y="288"/>
+            <point key="canvasLocation" x="2318" y="-446"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="v2C-7a-5dm">
@@ -193,7 +215,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5U2-bF-Jcy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1839" y="288"/>
+            <point key="canvasLocation" x="1645" y="-446"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="S0e-Nq-ccv">
@@ -211,7 +233,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZXe-Eh-oS7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1063" y="1047"/>
+            <point key="canvasLocation" x="1799" y="1167"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="jYx-Ex-asW"/>
+    </inferredMetricsTieBreakers>
 </document>

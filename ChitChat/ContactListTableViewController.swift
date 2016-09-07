@@ -6,14 +6,20 @@
 //
 //
 
+protocol ContactPickerDelegate {
+    func didSelectContact(recipient: XMPPUserCoreDataStorageObject)
+}
+
 import UIKit
 import XMPPFramework
 import xmpp_messenger_ios
 
 class ContactListTableViewController: UIViewController, OneRosterDelegate {
     
+    var delegate:ContactPickerDelegate?
+    
     @IBOutlet var tableView: UITableView!
-    @IBAction func closeWindow(sender: UIBarButtonItem) {
+    @IBAction func closeWindow(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
@@ -86,6 +92,11 @@ class ContactListTableViewController: UIViewController, OneRosterDelegate {
         OneChat.sharedInstance.configurePhotoForCell(cell!, user: user)
         
         return cell!;
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        delegate?.didSelectContact(OneRoster.userFromRosterAtIndexPath(indexPath: indexPath))
+        closeWindow(self)
     }
 
     
