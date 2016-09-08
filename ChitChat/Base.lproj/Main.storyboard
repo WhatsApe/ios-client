@@ -34,7 +34,7 @@
                     <navigationItem key="navigationItem" id="Liy-wP-W1F">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="vVA-9I-a9d">
                             <connections>
-                                <segue destination="io2-iN-4CR" kind="show" identifier="chat.to.add" id="bI5-64-4BX"/>
+                                <segue destination="rRj-yw-q4f" kind="presentation" identifier="One.HomeToContacts" id="KrQ-nC-DnZ"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="6C2-gI-1Nk">
@@ -163,11 +163,12 @@
                     <navigationItem key="navigationItem" id="0yL-9j-yeh">
                         <barButtonItem key="leftBarButtonItem" title="Done" id="TMx-yj-dye">
                             <connections>
-                                <action selector="done:" destination="sZH-JK-i2N" id="NXa-wc-XwS"/>
+                                <action selector="done:" destination="sZH-JK-i2N" id="JFr-UQ-LW1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneButton" destination="TMx-yj-dye" id="W6k-vm-eEQ"/>
                         <outlet property="passwordTextField" destination="7n6-VV-EYL" id="usu-Sv-SoY"/>
                         <outlet property="usernameTextField" destination="wHg-fa-7bT" id="2or-7j-b0f"/>
                         <outlet property="validateButton" destination="zcI-mS-ezX" id="WeM-Ir-yac"/>
@@ -233,6 +234,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="d65-gc-Y6l"/>
+        <segue reference="KrQ-nC-DnZ"/>
     </inferredMetricsTieBreakers>
 </document>
