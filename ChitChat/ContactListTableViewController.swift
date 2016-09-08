@@ -100,8 +100,8 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
         if segue?.identifier == "contact.to.chat" {
             if let controller = segue?.destinationViewController as? ChatViewController {
                 if let cell: UITableViewCell? = sender as? UITableViewCell {
-                    let contactUser = OneChats.getChatsList().objectAtIndex(tableView.indexPathForCell(cell!)!.row) as! XMPPUserCoreDataStorageObject
-                    controller.recipient = contactUser
+                    let cellIndex = tableView.indexPathForCell(cell!)
+                    controller.recipient = OneRoster.userFromRosterAtIndexPath(indexPath: cellIndex!)
                 }
             }
         }
