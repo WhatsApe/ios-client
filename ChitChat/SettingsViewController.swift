@@ -12,6 +12,8 @@ import xmpp_messenger_ios
 
 class SettingsViewController: UIViewController {
     
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -25,6 +27,7 @@ class SettingsViewController: UIViewController {
             passwordTextField.hidden = true
             validateButton.setTitle("Disconnect", forState: UIControlState.Normal)
         } else if NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myJID) != "kXMPPmyJID" {
+            doneButton.enabled = false
             passwordTextField.text = NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myPassword)
             let username = NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myJID)
             guard let unwrappedUsername = username else {
@@ -69,10 +72,13 @@ class SettingsViewController: UIViewController {
         let this = self
         if OneChat.sharedInstance.isConnected() {
             OneChat.sharedInstance.disconnect()
+            doneButton.enabled = false
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: kXMPP.stopConnection)
             usernameTextField.hidden = false
             passwordTextField.hidden = false
             validateButton.setTitle("Validate", forState: UIControlState.Normal)
         } else {
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: kXMPP.stopConnection)
             OneChat.sharedInstance.connect(username: self.usernameTextField.text! + "@localhost", password: self.passwordTextField.text!) { (stream, error) -> Void in
                 if let _ = error {
                     let alertController = UIAlertController(title: "Sorry", message: "An error occured: \(error)", preferredStyle: UIAlertControllerStyle.Alert)
@@ -81,6 +87,7 @@ class SettingsViewController: UIViewController {
                     }))
                     self.presentViewController(alertController, animated: true, completion: nil)
                 } else {
+                    self.doneButton.enabled = true
                     this.dismissViewControllerAnimated(true, completion: nil)
                 }
             }

@@ -163,11 +163,12 @@
                     <navigationItem key="navigationItem" id="0yL-9j-yeh">
                         <barButtonItem key="leftBarButtonItem" title="Done" id="TMx-yj-dye">
                             <connections>
-                                <action selector="done:" destination="sZH-JK-i2N" id="NXa-wc-XwS"/>
+                                <action selector="done:" destination="sZH-JK-i2N" id="JFr-UQ-LW1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneButton" destination="TMx-yj-dye" id="W6k-vm-eEQ"/>
                         <outlet property="passwordTextField" destination="7n6-VV-EYL" id="usu-Sv-SoY"/>
                         <outlet property="usernameTextField" destination="wHg-fa-7bT" id="2or-7j-b0f"/>
                         <outlet property="validateButton" destination="zcI-mS-ezX" id="WeM-Ir-yac"/>

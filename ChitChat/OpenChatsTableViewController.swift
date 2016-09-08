@@ -22,12 +22,16 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         OneRoster.sharedInstance.delegate = self
-        OneChat.sharedInstance.connect(username: kXMPP.myJID, password: kXMPP.myPassword) { (stream, error) -> Void in
-            if let _ = error {
-                self.performSegueWithIdentifier("One.HomeToSettings", sender: self)
-            } else {
-                //set up online UI
+        if !NSUserDefaults.standardUserDefaults().boolForKey(kXMPP.stopConnection) {
+            OneChat.sharedInstance.connect(username: kXMPP.myJID, password: kXMPP.myPassword) { (stream, error) -> Void in
+                if let _ = error {
+                    self.performSegueWithIdentifier("One.HomeToSettings", sender: self)
+                } else {
+                    //set up online UI
+                }
             }
+        } else {
+            self.performSegueWithIdentifier("One.HomeToSettings", sender: self)
         }
     }
     
