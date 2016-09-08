@@ -11,4 +11,5 @@ import Foundation
 public struct kXMPP {
 	public static let myJID: String = "kXMPPmyJID"
 	public static let myPassword: String = "kXMPPmyPassword"
+    public static let stopConnection: String = "false"
 }
