@@ -34,7 +34,7 @@
                     <navigationItem key="navigationItem" id="Liy-wP-W1F">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="vVA-9I-a9d">
                             <connections>
-                                <segue destination="io2-iN-4CR" kind="show" identifier="chat.to.add" id="bI5-64-4BX"/>
+                                <segue destination="rRj-yw-q4f" kind="presentation" identifier="One.HomeToContacts" id="KrQ-nC-DnZ"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="6C2-gI-1Nk">
@@ -233,6 +233,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="d65-gc-Y6l"/>
+        <segue reference="KrQ-nC-DnZ"/>
     </inferredMetricsTieBreakers>
 </document>

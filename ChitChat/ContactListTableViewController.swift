@@ -19,9 +19,8 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
     var delegate:ContactPickerDelegate?
     
     @IBAction func closeWindow(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: {})
     }
-
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -95,7 +94,7 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         delegate?.didSelectContact(OneRoster.userFromRosterAtIndexPath(indexPath: indexPath))
-        closeWindow(self)
+        //closeWindow(self)
     }
 
     
