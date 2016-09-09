@@ -122,7 +122,7 @@
                                     <constraint firstAttribute="width" constant="300" id="acj-I3-PU9"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
                                     <outlet property="delegate" destination="sZH-JK-i2N" id="U1E-GV-VGu"/>
                                 </connections>
