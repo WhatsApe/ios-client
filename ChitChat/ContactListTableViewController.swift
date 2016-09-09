@@ -99,10 +99,7 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
         if segue?.identifier == "contact.to.chat" {
             if let controller = segue?.destinationViewController as? ChatViewController {
-                if let cell: UITableViewCell? = sender as? UITableViewCell {
-                    let contactUser = OneChats.getChatsList().objectAtIndex(tableView.indexPathForCell(cell!)!.row) as! XMPPUserCoreDataStorageObject
-                    controller.recipient = contactUser
-                }
+                self.delegate = controller
             }
         }
     }
