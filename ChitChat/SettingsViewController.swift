@@ -79,6 +79,7 @@ class SettingsViewController: UIViewController {
             passwordTextField.hidden = false
             validateButton.setTitle("Validate", forState: UIControlState.Normal)
         } else if checkInputs() {
+            OneChats.self.clearChatsList()
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: kXMPP.stopConnection)
             OneChat.sharedInstance.connect(username: self.usernameTextField.text! + "@localhost", password: self.passwordTextField.text!) { (stream, error) -> Void in
                 if let _ = error {

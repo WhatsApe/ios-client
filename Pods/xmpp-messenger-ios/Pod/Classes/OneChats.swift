@@ -25,9 +25,10 @@ public class OneChats: NSObject, NSFetchedResultsControllerDelegate {
 	public class func getChatsList() -> NSArray {
 		if 0 == sharedInstance.chatList.count {
 			if let chatList: NSMutableArray = sharedInstance.getActiveUsersFromCoreDataStorage() as? NSMutableArray {//NSUserDefaults.standardUserDefaults().objectForKey("openChatList")
+                
 				chatList.enumerateObjectsUsingBlock({ (jidStr, index, finished) -> Void in
 					OneChats.sharedInstance.getUserFromXMPPCoreDataObject(jidStr: jidStr as! String)
-					
+					print(jidStr)
 					if let user = OneRoster.userFromRosterForJID(jid: jidStr as! String) {
 						OneChats.sharedInstance.chatList.addObject(user)
 					}
@@ -36,6 +37,10 @@ public class OneChats: NSObject, NSFetchedResultsControllerDelegate {
 		}
 		return sharedInstance.chatList
 	}
+    
+    public class func clearChatsList() {
+        sharedInstance.chatList = NSMutableArray()
+    }
 	
 	private func getActiveUsersFromCoreDataStorage() -> NSArray? {
 		let moc = OneMessage.sharedInstance.xmppMessageStorage?.mainThreadManagedObjectContext
