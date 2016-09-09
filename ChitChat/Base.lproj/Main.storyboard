@@ -84,7 +84,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgQ-v7-Dqi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2494" y="1167"/>
+            <point key="canvasLocation" x="2286" y="1135"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="dFF-gL-ja2">
@@ -102,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IC2-SV-dav" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1063" y="1167"/>
+            <point key="canvasLocation" x="1087" y="1911"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="rLL-h4-z1C">
@@ -230,7 +230,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZXe-Eh-oS7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1799" y="1167"/>
+            <point key="canvasLocation" x="1527" y="1135"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

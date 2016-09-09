@@ -92,13 +92,14 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
         return cell!;
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        delegate?.didSelectContact(OneRoster.userFromRosterAtIndexPath(indexPath: indexPath))
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
         if segue?.identifier == "contact.to.chat" {
             if let controller = segue?.destinationViewController as? ChatViewController {
-                if let cell: UITableViewCell? = sender as? UITableViewCell {
-                    let cellIndex = tableView.indexPathForCell(cell!)
-                    controller.recipient = OneRoster.userFromRosterAtIndexPath(indexPath: cellIndex!)
-                }
+                self.delegate = controller
             }
         }
     }
