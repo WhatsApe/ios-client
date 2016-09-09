@@ -10,6 +10,7 @@ import UIKit
 import XMPPFramework
 import xmpp_messenger_ios
 
+
 class SettingsViewController: UIViewController {
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
@@ -78,6 +79,7 @@ class SettingsViewController: UIViewController {
             passwordTextField.hidden = false
             validateButton.setTitle("Validate", forState: UIControlState.Normal)
         } else if checkInputs() {
+            OneChats.self.clearChatsList()
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: kXMPP.stopConnection)
             OneChat.sharedInstance.connect(username: self.usernameTextField.text! + "@localhost", password: self.passwordTextField.text!) { (stream, error) -> Void in
                 if let _ = error {
@@ -93,6 +95,7 @@ class SettingsViewController: UIViewController {
             }
         }
     }
+    
     @IBAction func done(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
