@@ -10,6 +10,7 @@ import UIKit
 import XMPPFramework
 import xmpp_messenger_ios
 
+
 class SettingsViewController: UIViewController {
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
@@ -77,11 +78,11 @@ class SettingsViewController: UIViewController {
             usernameTextField.hidden = false
             passwordTextField.hidden = false
             validateButton.setTitle("Validate", forState: UIControlState.Normal)
-        } else {
+        } else if checkInputs() {
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: kXMPP.stopConnection)
             OneChat.sharedInstance.connect(username: self.usernameTextField.text! + "@localhost", password: self.passwordTextField.text!) { (stream, error) -> Void in
                 if let _ = error {
-                    let alertController = UIAlertController(title: "Sorry", message: "An error occured: \(error)", preferredStyle: UIAlertControllerStyle.Alert)
+                    let alertController = UIAlertController(title: "Sorry", message: "Username/Password did not match our records", preferredStyle: UIAlertControllerStyle.Alert)
                     alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
                         // do something
                     }))
@@ -93,8 +94,21 @@ class SettingsViewController: UIViewController {
             }
         }
     }
+    
     @IBAction func done(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func checkInputs() -> Bool {
+        if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
+            let alertController = UIAlertController(title: "Sorry", message: "Username/Password cannot be empty", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
+                // do something
+            }))
+            self.presentViewController(alertController, animated: true, completion: nil)
+            return false
+        }
+        return true
     }
     
 }
