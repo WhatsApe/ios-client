@@ -64,6 +64,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="io2-iN-4CR" kind="show" identifier="contact.to.chat" id="TNI-Dp-ljp"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -81,7 +84,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgQ-v7-Dqi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2494" y="1167"/>
+            <point key="canvasLocation" x="2286" y="1135"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="dFF-gL-ja2">
@@ -96,13 +99,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <segue destination="rRj-yw-q4f" kind="presentation" identifier="chat.to.contact" id="V6m-DB-fzY"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IC2-SV-dav" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1063" y="1167"/>
+            <point key="canvasLocation" x="1087" y="1911"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="rLL-h4-z1C">
@@ -230,10 +230,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZXe-Eh-oS7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1799" y="1167"/>
+            <point key="canvasLocation" x="1527" y="1135"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="KrQ-nC-DnZ"/>
+        <segue reference="TNI-Dp-ljp"/>
     </inferredMetricsTieBreakers>
 </document>

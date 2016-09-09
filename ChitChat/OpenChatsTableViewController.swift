@@ -12,6 +12,7 @@ import xmpp_messenger_ios
 
 class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
     
+    var delegate:ContactPickerDelegate?
     var chatList = NSArray()
     
     override func viewDidLoad() {
@@ -40,6 +41,7 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
         OneRoster.sharedInstance.delegate = nil
     }
     
+    // REDUNDANT
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         if identifier == "chat.to.add" {
             if !OneChat.sharedInstance.isConnected() {
@@ -57,16 +59,16 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
         if segue?.identifier == "chats.to.chat" {
             if let controller = segue?.destinationViewController as? ChatViewController {
-                if let cell: UITableViewCell? = sender as? UITableViewCell {
-                    let user = OneChats.getChatsList().objectAtIndex(tableView.indexPathForCell(cell!)!.row) as! XMPPUserCoreDataStorageObject
-                    controller.recipient = user
-                }
+                self.delegate = controller
             }
         }
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        delegate?.didSelectContact(OneChats.getChatsList()[indexPath.row] as! XMPPUserCoreDataStorageObject)
+    }
+    
     func oneRosterContentChanged(controller: NSFetchedResultsController) {
-        //Will reload the tableView to reflect roster's changes
         tableView.reloadData()
     }
     
