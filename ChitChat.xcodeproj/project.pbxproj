@@ -17,6 +17,7 @@
 		C160D8011D80169900E5D75C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C160D7FF1D80169900E5D75C /* LaunchScreen.storyboard */; };
 		C160D8091D801B8100E5D75C /* OpenChatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C160D8081D801B8100E5D75C /* OpenChatsTableViewController.swift */; };
 		C160D80F1D801CB100E5D75C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C160D80E1D801CB100E5D75C /* SettingsViewController.swift */; };
+		EDCEB6AE1D86C7C5007ADF7B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCEB6AD1D86C7C5007ADF7B /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		C160D8021D80169900E5D75C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C160D8081D801B8100E5D75C /* OpenChatsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenChatsTableViewController.swift; sourceTree = "<group>"; };
 		C160D80E1D801CB100E5D75C /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		EDCEB6AD1D86C7C5007ADF7B /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				C160D80E1D801CB100E5D75C /* SettingsViewController.swift */,
 				72CEDB441D8063F9005A3185 /* ChatViewController.swift */,
 				72CEDB461D806407005A3185 /* ContactListTableViewController.swift */,
+				EDCEB6AD1D86C7C5007ADF7B /* TabBarController.swift */,
 			);
 			path = ChitChat;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				C160D8091D801B8100E5D75C /* OpenChatsTableViewController.swift in Sources */,
 				C160D7F91D80169900E5D75C /* ViewController.swift in Sources */,
 				C160D7F71D80169900E5D75C /* AppDelegate.swift in Sources */,
+				EDCEB6AE1D86C7C5007ADF7B /* TabBarController.swift in Sources */,
 				72CEDB451D8063F9005A3185 /* ChatViewController.swift in Sources */,
 				C160D80F1D801CB100E5D75C /* SettingsViewController.swift in Sources */,
 			);
