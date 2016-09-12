@@ -21,7 +21,13 @@ class ChatViewController: JSQMessagesViewController, ContactPickerDelegate, OneM
         
         if let recipient = recipient {
             navigationItem.rightBarButtonItems = []
-            navigationItem.title = recipient.displayName
+            
+            // See if the user has a nickname, then show it. Otherwise show the displayName
+            if let nickname = OneChat.sharedInstance.xmppvCardTempModule?.vCardTempForJID(recipient.jid, shouldFetch: false)?.nickname {
+                navigationItem.title = nickname;
+            } else {
+                navigationItem.title = recipient.displayName;
+            }
             
             self.messages = OneMessage.sharedInstance.loadArchivedMessagesFrom(jid: recipient.jidStr)
             self.collectionView?.reloadData()

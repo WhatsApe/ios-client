@@ -13,7 +13,15 @@ import xmpp_messenger_ios
 
 class SettingsViewController: UIViewController {
     
+    @IBOutlet weak var nicknameTextField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBAction func saveProfile(sender: AnyObject) {
+        let newNickname = nicknameTextField.text
+        let myvCard = OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp
+        myvCard?.nickname = newNickname
+        OneChat.sharedInstance.xmppvCardTempModule?.updateMyvCardTemp(myvCard)
+        debugPrint(myvCard)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +36,8 @@ class SettingsViewController: UIViewController {
             passwordTextField.hidden = true
             NicknameView.hidden = false
             validateButton.setTitle("Disconnect", forState: UIControlState.Normal)
+            let myvCard = OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp
+            nicknameTextField.text = myvCard?.nickname
         } else if NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myJID) != "kXMPPmyJID" {
             doneButton.enabled = false
             passwordTextField.text = NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myPassword)

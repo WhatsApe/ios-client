@@ -84,7 +84,12 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
         let cell: UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("OneCellReuse", forIndexPath: indexPath)
         let user = OneChats.getChatsList().objectAtIndex(indexPath.row) as! XMPPUserCoreDataStorageObject
         
-        cell!.textLabel!.text = user.displayName
+        // See if the user has a nickname, then show it. Otherwise show the displayName
+        if let nickname = OneChat.sharedInstance.xmppvCardTempModule?.vCardTempForJID(user.jid, shouldFetch: false)?.nickname {
+            cell!.textLabel!.text = nickname;
+        } else {
+            cell!.textLabel!.text = user.displayName;
+        }
         
         OneChat.sharedInstance.configurePhotoForCell(cell!, user: user)
         
