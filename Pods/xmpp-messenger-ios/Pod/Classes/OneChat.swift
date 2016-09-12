@@ -160,8 +160,8 @@ public class OneChat: NSObject {
 		xmppCapabilities!.autoFetchNonHashedCapabilities = false;
 		
 		xmppMessageDeliveryRecipts = XMPPMessageDeliveryReceipts(dispatchQueue: dispatch_get_main_queue())
-		xmppMessageDeliveryRecipts!.autoSendMessageDeliveryReceipts = true
-		xmppMessageDeliveryRecipts!.autoSendMessageDeliveryRequests = true
+//		xmppMessageDeliveryRecipts!.autoSendMessageDeliveryReceipts = true
+//		xmppMessageDeliveryRecipts!.autoSendMessageDeliveryRequests = true
 		
 		xmppLastActivity = XMPPLastActivity()
 		
