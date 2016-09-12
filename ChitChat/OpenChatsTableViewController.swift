@@ -26,7 +26,7 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
         if !NSUserDefaults.standardUserDefaults().boolForKey(kXMPP.stopConnection) {
             OneChat.sharedInstance.connect(username: kXMPP.myJID, password: kXMPP.myPassword) { (stream, error) -> Void in
                 if let _ = error {
-                    self.performSegueWithIdentifier("One.HomeToSettings", sender: self)
+                    self.tabBarController?.selectedIndex = 2
                 } else {
                     //set up online UI
                 }
