@@ -188,7 +188,7 @@
         <scene sceneID="ndd-Qd-Ajb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dlp-GR-q8B" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="h6D-qR-hli" userLabel="Settings"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="typing.png" id="h6D-qR-hli" userLabel="Settings"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CIc-PO-aEs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -239,9 +239,12 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ekH-br-pNm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="251" y="288"/>
+            <point key="canvasLocation" x="171" y="288"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="typing.png" width="34" height="8"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="TNI-Dp-ljp"/>
     </inferredMetricsTieBreakers>

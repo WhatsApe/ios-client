@@ -32,7 +32,7 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
                 }
             }
         } else {
-            self.performSegueWithIdentifier("One.HomeToSettings", sender: self)
+            self.tabBarController?.selectedIndex = 2
         }
     }
     
