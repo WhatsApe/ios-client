@@ -160,8 +160,8 @@ public class OneChat: NSObject {
 		xmppCapabilities!.autoFetchNonHashedCapabilities = false;
 		
 		xmppMessageDeliveryRecipts = XMPPMessageDeliveryReceipts(dispatchQueue: dispatch_get_main_queue())
-		xmppMessageDeliveryRecipts!.autoSendMessageDeliveryReceipts = true
-		xmppMessageDeliveryRecipts!.autoSendMessageDeliveryRequests = true
+//		xmppMessageDeliveryRecipts!.autoSendMessageDeliveryReceipts = true
+//		xmppMessageDeliveryRecipts!.autoSendMessageDeliveryRequests = true
 		
 		xmppLastActivity = XMPPLastActivity()
 		
@@ -267,7 +267,11 @@ public class OneChat: NSObject {
 			streamDidConnectCompletionBlock = completion //was false
 			streamDidConnectCompletionBlock!(stream: self.xmppStream!, error: DDXMLElement(name: "Bad password"))
 		}
-		try! xmppStream!.connectWithTimeout(XMPPStreamTimeoutNone)
+        do {
+            try xmppStream!.connectWithTimeout(XMPPStreamTimeoutNone)
+        } catch is NSError {
+            print("an error has occured in xmppStream.connectWithTimeout")
+        }
 		
 		streamDidConnectCompletionBlock = completion
 	}

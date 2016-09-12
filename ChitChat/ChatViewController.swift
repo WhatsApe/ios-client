@@ -27,7 +27,7 @@ class ChatViewController: JSQMessagesViewController, ContactPickerDelegate, OneM
         } else {
             navigationItem.title = "New message"
             
-            navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addRecipient"), animated: true)
+            navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ChatViewController.addRecipient)), animated: true)
             
             if firstTime {
                 firstTime = false
@@ -85,7 +85,7 @@ class ChatViewController: JSQMessagesViewController, ContactPickerDelegate, OneM
         return message
     }
     
-    override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
+    override func collectionView(collectionView: JSQMessagesCollectionView, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
         let message: JSQMessage = self.messages[indexPath.item] as! JSQMessage
         
         let bubbleFactory = JSQMessagesBubbleImageFactory()
