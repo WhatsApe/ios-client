@@ -82,15 +82,15 @@
 			children = (
 				C160D7F61D80169900E5D75C /* AppDelegate.swift */,
 				C160D7F81D80169900E5D75C /* ViewController.swift */,
-				C160D7FA1D80169900E5D75C /* Main.storyboard */,
-				C160D7FD1D80169900E5D75C /* Assets.xcassets */,
-				C160D7FF1D80169900E5D75C /* LaunchScreen.storyboard */,
-				C160D8021D80169900E5D75C /* Info.plist */,
 				C160D8081D801B8100E5D75C /* OpenChatsTableViewController.swift */,
 				C160D80E1D801CB100E5D75C /* SettingsViewController.swift */,
-				72CEDB441D8063F9005A3185 /* ChatViewController.swift */,
 				72CEDB461D806407005A3185 /* ContactListTableViewController.swift */,
+				72CEDB441D8063F9005A3185 /* ChatViewController.swift */,
 				EDCEB6AD1D86C7C5007ADF7B /* TabBarController.swift */,
+				C160D7FA1D80169900E5D75C /* Main.storyboard */,
+				C160D7FF1D80169900E5D75C /* LaunchScreen.storyboard */,
+				C160D7FD1D80169900E5D75C /* Assets.xcassets */,
+				C160D8021D80169900E5D75C /* Info.plist */,
 			);
 			path = ChitChat;
 			sourceTree = "<group>";

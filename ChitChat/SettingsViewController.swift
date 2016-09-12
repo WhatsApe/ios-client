@@ -26,6 +26,7 @@ class SettingsViewController: UIViewController {
         if OneChat.sharedInstance.isConnected() {
             usernameTextField.hidden = true
             passwordTextField.hidden = true
+            NicknameView.hidden = false
             validateButton.setTitle("Disconnect", forState: UIControlState.Normal)
         } else if NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myJID) != "kXMPPmyJID" {
             doneButton.enabled = false
@@ -69,6 +70,8 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var validateButton: UIButton!
     
+    @IBOutlet weak var NicknameView: UIView!
+    
     @IBAction func validate(sender: AnyObject) {
 //        let this = self
         if OneChat.sharedInstance.isConnected() {
@@ -78,6 +81,7 @@ class SettingsViewController: UIViewController {
             usernameTextField.hidden = false
             passwordTextField.hidden = false
             validateButton.setTitle("Validate", forState: UIControlState.Normal)
+            NicknameView.hidden = true
         } else if checkInputs() {
             OneChats.self.clearChatsList()
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: kXMPP.stopConnection)
@@ -89,6 +93,7 @@ class SettingsViewController: UIViewController {
                     }))
                     self.presentViewController(alertController, animated: true, completion: nil)
                 } else {
+                    self.NicknameView.hidden = false
                     self.doneButton.enabled = true
                     self.tabBarController?.selectedIndex = 1
                 }

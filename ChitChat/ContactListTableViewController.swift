@@ -81,7 +81,7 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
         let cell: UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("OneCellReuse", forIndexPath: indexPath)
         let user = OneRoster.userFromRosterAtIndexPath(indexPath: indexPath)
         
-        cell!.textLabel!.text = user.displayName;
+        cell!.textLabel!.text = user.nickname;
         
         if user.unreadMessages.intValue > 0 {
             cell!.backgroundColor = .orangeColor()

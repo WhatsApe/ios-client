@@ -106,6 +106,7 @@ extension OneLastActivity: XMPPLastActivityDelegate {
 	}
 	
 	public func xmppLastActivity(sender: XMPPLastActivity!, didReceiveResponse response: XMPPIQ!) {
+        print(response)
 		if let callback = OneLastActivity.sharedInstance.didMakeLastCallCompletionBlock {
 			if let resp = response {
 				if resp.elementForName("error") != nil {
