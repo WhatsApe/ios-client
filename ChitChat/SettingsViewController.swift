@@ -70,7 +70,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var validateButton: UIButton!
     
     @IBAction func validate(sender: AnyObject) {
-        let this = self
+//        let this = self
         if OneChat.sharedInstance.isConnected() {
             OneChat.sharedInstance.disconnect()
             doneButton.enabled = false
@@ -90,14 +90,14 @@ class SettingsViewController: UIViewController {
                     self.presentViewController(alertController, animated: true, completion: nil)
                 } else {
                     self.doneButton.enabled = true
-                    this.dismissViewControllerAnimated(true, completion: nil)
+                    self.tabBarController?.selectedIndex = 1
                 }
             }
         }
     }
     
     @IBAction func done(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.tabBarController?.selectedIndex = 1
     }
     
     func checkInputs() -> Bool {

@@ -18,6 +18,7 @@ class ChatViewController: JSQMessagesViewController, ContactPickerDelegate, OneM
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
         if let recipient = recipient {
             navigationItem.rightBarButtonItems = []
             navigationItem.title = recipient.displayName
@@ -45,7 +46,7 @@ class ChatViewController: JSQMessagesViewController, ContactPickerDelegate, OneM
             self.senderDisplayName = OneChat.sharedInstance.xmppStream?.myJID.bare()
         }
         self.inputToolbar!.contentView!.leftBarButtonItem!.hidden = true
-        self.collectionView!.collectionViewLayout.springinessEnabled = true
+        self.collectionView!.collectionViewLayout.springinessEnabled = false
     }
     
     func didSelectContact(recipient: XMPPUserCoreDataStorageObject) {
@@ -123,7 +124,7 @@ class ChatViewController: JSQMessagesViewController, ContactPickerDelegate, OneM
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
-        if indexPath.item % 3 == 0 {
+        if indexPath.item % 10 == 0 {
             let message: JSQMessage = self.messages[indexPath.item] as! JSQMessage
             return JSQMessagesTimestampFormatter.sharedFormatter().attributedTimestampForDate(message.date)
         }
@@ -178,7 +179,7 @@ class ChatViewController: JSQMessagesViewController, ContactPickerDelegate, OneM
     // Mark: JSQMessages collection view flow layout delegate
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        if indexPath.item % 3 == 0 {
+        if indexPath.item % 10 == 0 {
             return kJSQMessagesCollectionViewCellLabelHeightDefault
         }
         
