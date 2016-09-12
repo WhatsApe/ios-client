@@ -25,6 +25,7 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         OneRoster.sharedInstance.delegate = self
+        tableView.reloadData()
     }
     
     override func viewWillDisappear(animated: Bool) {

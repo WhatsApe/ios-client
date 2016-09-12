@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QeL-iR-dEL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5ZX-qj-QGW">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Open Chats Table View Controller-->
+        <!--Recent Chats-->
         <scene sceneID="NN5-gf-use">
             <objects>
                 <tableViewController id="EoI-PM-RKh" customClass="OpenChatsTableViewController" customModule="ChitChat" customModuleProvider="target" sceneMemberID="viewController">
@@ -31,24 +31,15 @@
                             <outlet property="delegate" destination="EoI-PM-RKh" id="w66-Iq-g2h"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Liy-wP-W1F">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="vVA-9I-a9d">
-                            <connections>
-                                <segue destination="rRj-yw-q4f" kind="presentation" identifier="One.HomeToContacts" id="KrQ-nC-DnZ"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="6C2-gI-1Nk">
-                            <connections>
-                                <segue destination="dlp-GR-q8B" kind="presentation" identifier="One.HomeToSettings" id="ecb-To-o9f"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="Recent Chats" id="Liy-wP-W1F">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="3Fa-o5-4Jx"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UzI-vd-mbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1063" y="288"/>
+            <point key="canvasLocation" x="1875" y="288"/>
         </scene>
-        <!--Contact List Table View Controller-->
+        <!--Contacts-->
         <scene sceneID="hE6-K2-1We">
             <objects>
                 <tableViewController id="R7m-xv-dHo" customClass="ContactListTableViewController" customModule="ChitChat" customModuleProvider="target" sceneMemberID="viewController">
@@ -74,22 +65,18 @@
                             <outlet property="delegate" destination="R7m-xv-dHo" id="XE1-nL-Zg8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="SIW-i6-2bY">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="xFs-iq-F6D">
-                            <connections>
-                                <action selector="closeWindow:" destination="R7m-xv-dHo" id="xOy-r9-PLa"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="Contacts" id="SIW-i6-2bY">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="bTQ-nJ-Zgw"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgQ-v7-Dqi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2286" y="1135"/>
+            <point key="canvasLocation" x="1875" y="1127"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="dFF-gL-ja2">
             <objects>
-                <viewController id="io2-iN-4CR" customClass="ChatViewController" customModule="ChitChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="io2-iN-4CR" customClass="ChatViewController" customModule="ChitChat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QVq-rq-3Ri"/>
                         <viewControllerLayoutGuide type="bottom" id="biG-32-MxZ"/>
@@ -102,12 +89,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IC2-SV-dav" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1087" y="1911"/>
+            <point key="canvasLocation" x="2707" y="745"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--Settings-->
         <scene sceneID="rLL-h4-z1C">
             <objects>
-                <viewController id="sZH-JK-i2N" customClass="SettingsViewController" customModule="ChitChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="sZH-JK-i2N" customClass="SettingsViewController" customModule="ChitChat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TZy-Gd-yQd"/>
                         <viewControllerLayoutGuide type="bottom" id="yZN-9V-k3L"/>
@@ -160,15 +147,15 @@
                             <constraint firstItem="7n6-VV-EYL" firstAttribute="centerX" secondItem="eHx-QC-Psd" secondAttribute="centerX" id="ypF-24-WKn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="0yL-9j-yeh">
-                        <barButtonItem key="leftBarButtonItem" title="Done" id="TMx-yj-dye">
+                    <navigationItem key="navigationItem" title="Settings" id="0yL-9j-yeh">
+                        <barButtonItem key="leftBarButtonItem" title="Done" id="Gig-wd-3ub">
                             <connections>
-                                <action selector="done:" destination="sZH-JK-i2N" id="JFr-UQ-LW1"/>
+                                <action selector="done:" destination="sZH-JK-i2N" id="Uo8-LO-i8I"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="doneButton" destination="TMx-yj-dye" id="W6k-vm-eEQ"/>
+                        <outlet property="doneButton" destination="Gig-wd-3ub" id="bir-fO-tUP"/>
                         <outlet property="passwordTextField" destination="7n6-VV-EYL" id="usu-Sv-SoY"/>
                         <outlet property="usernameTextField" destination="wHg-fa-7bT" id="2or-7j-b0f"/>
                         <outlet property="validateButton" destination="zcI-mS-ezX" id="WeM-Ir-yac"/>
@@ -176,12 +163,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iGe-UE-b9Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2318" y="-446"/>
+            <point key="canvasLocation" x="1875" y="-440"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="v2C-7a-5dm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QeL-iR-dEL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="history" id="r2o-KL-Rgs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yTF-al-ij2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -194,12 +182,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JrB-42-x2f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="251" y="288"/>
+            <point key="canvasLocation" x="1063" y="288"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Settings-->
         <scene sceneID="ndd-Qd-Ajb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dlp-GR-q8B" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="typing.png" id="h6D-qR-hli" userLabel="Settings"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CIc-PO-aEs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -212,12 +201,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5U2-bF-Jcy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1645" y="-446"/>
+            <point key="canvasLocation" x="1063" y="-440"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="S0e-Nq-ccv">
             <objects>
                 <navigationController storyboardIdentifier="contactListNav" automaticallyAdjustsScrollViewInsets="NO" id="rRj-yw-q4f" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="contacts" id="wvk-NU-Fwg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="J9u-Zh-EQz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -230,9 +220,31 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZXe-Eh-oS7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1527" y="1135"/>
+            <point key="canvasLocation" x="1063" y="1143"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Wp0-cB-0go">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="5ZX-qj-QGW" customClass="TabBarController" customModule="ChitChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="89n-rB-8vP">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="rRj-yw-q4f" kind="relationship" relationship="viewControllers" id="fFd-bh-V0f"/>
+                        <segue destination="QeL-iR-dEL" kind="relationship" relationship="viewControllers" id="Z1a-Hx-5kh"/>
+                        <segue destination="dlp-GR-q8B" kind="relationship" relationship="viewControllers" id="10E-nC-e8p"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ekH-br-pNm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="171" y="288"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="typing.png" width="34" height="8"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="TNI-Dp-ljp"/>
     </inferredMetricsTieBreakers>
