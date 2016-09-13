@@ -168,6 +168,9 @@
                                         <color key="backgroundColor" red="0.027908176310000001" green="0.4866067161" blue="0.91081730770000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" title="Upload Profile Picture"/>
+                                        <connections>
+                                            <action selector="selectPicture:" destination="sZH-JK-i2N" eventType="touchUpInside" id="Oqp-GC-KbI"/>
+                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yj7-Ic-PtH">
                                         <rect key="frame" x="8" y="0.0" width="46" height="46"/>
@@ -200,6 +203,7 @@
                     <connections>
                         <outlet property="NicknameView" destination="T9t-fs-uJb" id="G6r-eP-FHe"/>
                         <outlet property="doneButton" destination="Gig-wd-3ub" id="bir-fO-tUP"/>
+                        <outlet property="imageView" destination="yj7-Ic-PtH" id="Kri-XH-BrW"/>
                         <outlet property="nicknameTextField" destination="9cB-aZ-mLS" id="Zgc-ul-DiQ"/>
                         <outlet property="passwordTextField" destination="7n6-VV-EYL" id="usu-Sv-SoY"/>
                         <outlet property="usernameTextField" destination="wHg-fa-7bT" id="2or-7j-b0f"/>

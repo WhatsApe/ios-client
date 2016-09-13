@@ -11,7 +11,7 @@ import XMPPFramework
 import xmpp_messenger_ios
 
 
-class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate {
+class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UIImagePickerControllerDelegate,  UINavigationControllerDelegate {
     
     @IBOutlet weak var nicknameTextField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
@@ -21,9 +21,33 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate {
         myvCard?.nickname = newNickname
         OneChat.sharedInstance.xmppvCardTempModule?.updateMyvCardTemp(myvCard)        
     }
+    @IBOutlet var imageView: UIImageView!
+    
+    let imagePicker  = UIImagePickerController()
+    
+    @IBAction func selectPicture(sender: UIButton) {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .PhotoLibrary
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imageView.contentMode = .ScaleAspectFit
+            imageView.image = pickedImage
+        }
+        
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imagePicker.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
         let tap = UITapGestureRecognizer(target: self, action: #selector(SettingsViewController.DismissKeyboard))
     }
