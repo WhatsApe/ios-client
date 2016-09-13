@@ -19,13 +19,7 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate {
         let newNickname = nicknameTextField.text
         let myvCard = OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp
         myvCard?.nickname = newNickname
-        OneChat.sharedInstance.xmppvCardTempModule?.updateMyvCardTemp(myvCard)
-        
-//        let alertController = UIAlertController(title: "Success", message: "Your profile has been saved!", preferredStyle: UIAlertControllerStyle.Alert)
-//        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
-//            // do something
-//        }))
-//        self.presentViewController(alertController, animated: true, completion: nil)
+        OneChat.sharedInstance.xmppvCardTempModule?.updateMyvCardTemp(myvCard)        
     }
     
     override func viewDidLoad() {
@@ -36,6 +30,7 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        OneChat.sharedInstance.xmppvCardTempModule?.addDelegate(self, delegateQueue: dispatch_get_main_queue())
         if OneChat.sharedInstance.isConnected() {
             usernameTextField.hidden = true
             passwordTextField.hidden = true
@@ -54,6 +49,11 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate {
             }
             usernameTextField.text = unwrappedUsername.componentsSeparatedByString("@")[0]
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        OneChat.sharedInstance.xmppvCardTempModule?.removeDelegate(self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -133,17 +133,15 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate {
     }
     
     func xmppvCardTempModuleDidUpdateMyvCard(vCardTempModule: XMPPvCardTempModule!) {
-        
-        let alertController = UIAlertController(title: "Success", message: "Your profile has been saved!", preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
-            // do something
-        }))
-        self.presentViewController(alertController, animated: true, completion: nil)
+        displayAlert("Success", message: "Your profile has been saved.")
     }
     
     func xmppvCardTempModule(vCardTempModule: XMPPvCardTempModule!, failedToUpdateMyvCard error: DDXMLElement!) {
-        
-        let alertController = UIAlertController(title: "Unsuccessful", message: "Your profile has NOT been saved!", preferredStyle: UIAlertControllerStyle.Alert)
+        displayAlert("Unsuccessful", message: "Your profile has NOT been updated.")
+    }
+    
+    func displayAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
             // do something
         }))
