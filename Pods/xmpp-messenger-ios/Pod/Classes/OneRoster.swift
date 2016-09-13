@@ -120,7 +120,6 @@ extension OneRoster: XMPPRosterDelegate {
 extension OneRoster: XMPPStreamDelegate {
 	
 	public func xmppStream(sender: XMPPStream, didReceiveIQ ip: XMPPIQ) -> Bool {
-        print(ip)
 		if let msg = ip.attributeForName("from") {
 			if msg.stringValue() == "conference.process-one.net"  {
 				

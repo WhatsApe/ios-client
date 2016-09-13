@@ -81,7 +81,6 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
         let cell: UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("OneCellReuse", forIndexPath: indexPath)
         let user = OneRoster.userFromRosterAtIndexPath(indexPath: indexPath)
         
-        // See if the user has a nickname, then show it. Otherwise show the displayName
         if let nickname = OneChat.sharedInstance.xmppvCardTempModule?.vCardTempForJID(user.jid, shouldFetch: false)?.nickname {
             cell!.textLabel!.text = nickname;
         } else {

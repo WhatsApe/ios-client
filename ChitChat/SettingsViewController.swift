@@ -20,7 +20,6 @@ class SettingsViewController: UIViewController {
         let myvCard = OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp
         myvCard?.nickname = newNickname
         OneChat.sharedInstance.xmppvCardTempModule?.updateMyvCardTemp(myvCard)
-        debugPrint(myvCard)
     }
     
     override func viewDidLoad() {

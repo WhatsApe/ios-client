@@ -180,16 +180,13 @@ public class OneMessage: NSObject {
 extension OneMessage: XMPPStreamDelegate {
 	
 	public func xmppStream(sender: XMPPStream, didSendMessage message: XMPPMessage) {
-        print(message)
 		if let completion = OneMessage.sharedInstance.didSendMessageCompletionBlock {
 			completion(stream: sender, message: message)
-            
 		}
 		//OneMessage.sharedInstance.didSendMessageCompletionBlock!(stream: sender, message: message)
 	}
 	
 	public func xmppStream(sender: XMPPStream, didReceiveMessage message: XMPPMessage) {
-        print(message)
 		let user = OneChat.sharedInstance.xmppRosterStorage.userForJID(message.from(), xmppStream: OneChat.sharedInstance.xmppStream, managedObjectContext: OneRoster.sharedInstance.managedObjectContext_roster())
 		
 		if !OneChats.knownUserForJid(jidStr: user.jidStr) {
