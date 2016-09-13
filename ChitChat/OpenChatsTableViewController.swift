@@ -26,7 +26,7 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
         if !NSUserDefaults.standardUserDefaults().boolForKey(kXMPP.stopConnection) {
             OneChat.sharedInstance.connect(username: kXMPP.myJID, password: kXMPP.myPassword) { (stream, error) -> Void in
                 if let _ = error {
-                    self.performSegueWithIdentifier("One.HomeToSettings", sender: self)
+                    self.tabBarController?.selectedIndex = 2
                 } else {
                     //set up online UI
                 }
@@ -84,7 +84,11 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
         let cell: UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("OneCellReuse", forIndexPath: indexPath)
         let user = OneChats.getChatsList().objectAtIndex(indexPath.row) as! XMPPUserCoreDataStorageObject
         
-        cell!.textLabel!.text = user.displayName
+        if let nickname = OneChat.sharedInstance.xmppvCardTempModule?.vCardTempForJID(user.jid, shouldFetch: false)?.nickname {
+            cell!.textLabel!.text = nickname;
+        } else {
+            cell!.textLabel!.text = user.displayName;
+        }
         
         OneChat.sharedInstance.configurePhotoForCell(cell!, user: user)
         

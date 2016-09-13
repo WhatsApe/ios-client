@@ -33,7 +33,7 @@ public class OneChat: NSObject {
 	var xmppRoster: XMPPRoster?
 	public var xmppLastActivity: XMPPLastActivity?
 	var xmppvCardStorage: XMPPvCardCoreDataStorage?
-	var xmppvCardTempModule: XMPPvCardTempModule?
+	public var xmppvCardTempModule: XMPPvCardTempModule?
 	public var xmppvCardAvatarModule: XMPPvCardAvatarModule?
 	var xmppCapabilitiesStorage: XMPPCapabilitiesCoreDataStorage?
 	var xmppMessageDeliveryRecipts: XMPPMessageDeliveryReceipts?

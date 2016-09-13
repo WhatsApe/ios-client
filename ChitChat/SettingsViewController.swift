@@ -11,9 +11,16 @@ import XMPPFramework
 import xmpp_messenger_ios
 
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate {
     
+    @IBOutlet weak var nicknameTextField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBAction func saveProfile(sender: AnyObject) {
+        let newNickname = nicknameTextField.text
+        let myvCard = OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp
+        myvCard?.nickname = newNickname
+        OneChat.sharedInstance.xmppvCardTempModule?.updateMyvCardTemp(myvCard)        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +30,14 @@ class SettingsViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        OneChat.sharedInstance.xmppvCardTempModule?.addDelegate(self, delegateQueue: dispatch_get_main_queue())
         if OneChat.sharedInstance.isConnected() {
             usernameTextField.hidden = true
             passwordTextField.hidden = true
+            NicknameView.hidden = false
             validateButton.setTitle("Disconnect", forState: UIControlState.Normal)
+            let myvCard = OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp
+            nicknameTextField.text = myvCard?.nickname
         } else if NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myJID) != "kXMPPmyJID" {
             doneButton.enabled = false
             passwordTextField.text = NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myPassword)
@@ -38,6 +49,11 @@ class SettingsViewController: UIViewController {
             }
             usernameTextField.text = unwrappedUsername.componentsSeparatedByString("@")[0]
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        OneChat.sharedInstance.xmppvCardTempModule?.removeDelegate(self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -69,6 +85,8 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var validateButton: UIButton!
     
+    @IBOutlet weak var NicknameView: UIView!
+    
     @IBAction func validate(sender: AnyObject) {
 //        let this = self
         if OneChat.sharedInstance.isConnected() {
@@ -78,6 +96,7 @@ class SettingsViewController: UIViewController {
             usernameTextField.hidden = false
             passwordTextField.hidden = false
             validateButton.setTitle("Validate", forState: UIControlState.Normal)
+            NicknameView.hidden = true
         } else if checkInputs() {
             OneChats.self.clearChatsList()
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: kXMPP.stopConnection)
@@ -89,6 +108,7 @@ class SettingsViewController: UIViewController {
                     }))
                     self.presentViewController(alertController, animated: true, completion: nil)
                 } else {
+                    self.NicknameView.hidden = false
                     self.doneButton.enabled = true
                     self.tabBarController?.selectedIndex = 1
                 }
@@ -110,6 +130,22 @@ class SettingsViewController: UIViewController {
             return false
         }
         return true
+    }
+    
+    func xmppvCardTempModuleDidUpdateMyvCard(vCardTempModule: XMPPvCardTempModule!) {
+        displayAlert("Success", message: "Your profile has been saved.")
+    }
+    
+    func xmppvCardTempModule(vCardTempModule: XMPPvCardTempModule!, failedToUpdateMyvCard error: DDXMLElement!) {
+        displayAlert("Unsuccessful", message: "Your profile has NOT been updated.")
+    }
+    
+    func displayAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
+            // do something
+        }))
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
 }

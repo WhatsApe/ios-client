@@ -109,6 +109,9 @@ extension OneRoster: XMPPRosterDelegate {
 	
 	public func xmppRosterDidEndPopulating(sender: XMPPRoster?) {
 		let jidList = OneChat.sharedInstance.xmppRosterStorage.jidsForXMPPStream(OneChat.sharedInstance.xmppStream)
+        for userJid in jidList {
+            OneChat.sharedInstance.xmppvCardTempModule?.fetchvCardTempForJID(userJid as! XMPPJID, ignoreStorage: true)
+        }
 		print("List=\(jidList)")
 		
 	}

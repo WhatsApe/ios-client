@@ -81,7 +81,11 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
         let cell: UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("OneCellReuse", forIndexPath: indexPath)
         let user = OneRoster.userFromRosterAtIndexPath(indexPath: indexPath)
         
-        cell!.textLabel!.text = user.displayName;
+        if let nickname = OneChat.sharedInstance.xmppvCardTempModule?.vCardTempForJID(user.jid, shouldFetch: false)?.nickname {
+            cell!.textLabel!.text = nickname;
+        } else {
+            cell!.textLabel!.text = user.displayName;
+        }
         
         if user.unreadMessages.intValue > 0 {
             cell!.backgroundColor = .orangeColor()
