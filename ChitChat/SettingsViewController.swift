@@ -11,7 +11,7 @@ import XMPPFramework
 import xmpp_messenger_ios
 
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate {
     
     @IBOutlet weak var nicknameTextField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
@@ -20,6 +20,12 @@ class SettingsViewController: UIViewController {
         let myvCard = OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp
         myvCard?.nickname = newNickname
         OneChat.sharedInstance.xmppvCardTempModule?.updateMyvCardTemp(myvCard)
+        
+//        let alertController = UIAlertController(title: "Success", message: "Your profile has been saved!", preferredStyle: UIAlertControllerStyle.Alert)
+//        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
+//            // do something
+//        }))
+//        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -124,6 +130,24 @@ class SettingsViewController: UIViewController {
             return false
         }
         return true
+    }
+    
+    func xmppvCardTempModuleDidUpdateMyvCard(vCardTempModule: XMPPvCardTempModule!) {
+        
+        let alertController = UIAlertController(title: "Success", message: "Your profile has been saved!", preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
+            // do something
+        }))
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func xmppvCardTempModule(vCardTempModule: XMPPvCardTempModule!, failedToUpdateMyvCard error: DDXMLElement!) {
+        
+        let alertController = UIAlertController(title: "Unsuccessful", message: "Your profile has NOT been saved!", preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
+            // do something
+        }))
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
 }
