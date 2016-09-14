@@ -146,6 +146,13 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
         }
     }
     
+    @IBAction func register(sender: UIButton) {
+        if checkInputs() {
+            
+        }
+    }
+    
+    
     @IBAction func done(sender: AnyObject) {
         self.tabBarController?.selectedIndex = 1
     }
