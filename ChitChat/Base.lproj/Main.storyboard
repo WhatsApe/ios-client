@@ -252,7 +252,7 @@
         <scene sceneID="ndd-Qd-Ajb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dlp-GR-q8B" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="typing.png" id="h6D-qR-hli" userLabel="Settings"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="Settings-30" selectedImage="Settings-30" id="h6D-qR-hli" userLabel="Settings"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CIc-PO-aEs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -307,7 +307,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="typing.png" width="34" height="8"/>
+        <image name="Settings-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="TNI-Dp-ljp"/>

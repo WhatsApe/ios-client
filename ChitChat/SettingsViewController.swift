@@ -15,6 +15,13 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
     
     var myvCard:XMPPvCardTemp?
     
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//        
+//        // Initialize Tab Bar Item
+//        tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "Settings-30"), tag: 0)
+//    }
+    
     @IBOutlet weak var saveProfileButton: UIButton!
     @IBOutlet weak var nicknameTextField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
@@ -245,6 +252,7 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
     
     func xmppvCardTempModule(vCardTempModule: XMPPvCardTempModule!, failedToUpdateMyvCard error: DDXMLElement!) {
         displayAlert("Unsuccessful", message: "Your profile has NOT been updated.")
+        debugPrint(error)
         saveProfileButton.enabled = true
     }
     
