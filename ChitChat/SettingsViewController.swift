@@ -68,10 +68,12 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
             usernameTextField.hidden = true
             passwordTextField.hidden = true
             NicknameView.hidden = false
+            registerButton.hidden = true
             updateUserFields()
             validateButton.setTitle("Disconnect", forState: UIControlState.Normal)
         } else if NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myJID) != "kXMPPmyJID" {
             doneButton.enabled = false
+            registerButton.hidden = false
             passwordTextField.text = NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myPassword)
             let username = NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myJID)
             guard let unwrappedUsername = username else {
@@ -127,6 +129,7 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: kXMPP.stopConnection)
             usernameTextField.hidden = false
             passwordTextField.hidden = false
+            registerButton.hidden = false
             validateButton.setTitle("Validate", forState: UIControlState.Normal)
             NicknameView.hidden = true
         } else if checkInputs() {
@@ -139,41 +142,62 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
                         // do something
                     }))
                     self.presentViewController(alertController, animated: true, completion: nil)
+                    OneChat.sharedInstance.disconnect()
                 } else {
                     self.NicknameView.hidden = false
                     self.doneButton.enabled = true
+                    self.registerButton.hidden = true
                     self.tabBarController?.selectedIndex = 1
                 }
             }
         }
     }
     
+    @IBOutlet weak var registerButton: UIButton!
     @IBAction func register(sender: UIButton) {
         if checkInputs() {
             let username = "\(usernameTextField.text!)@localhost"
             let password = passwordTextField.text!
+            registerButton.setTitle("Registering...", forState: UIControlState.Disabled)
+            registerButton.enabled = false
             
             OneChat.sharedInstance.connect(username: username, password: password, completionHandler: { (stream, error) in
-                print("Attempting registration for username \(OneChat.sharedInstance.xmppStream!.myJID.bare)")
-                debugPrint(stream.myJID)
-                if stream.supportsInBandRegistration() {
-                    do {
-                        try stream.registerWithPassword(password)
+                if let _ = error {
+                    print("Attempting registration for username \(OneChat.sharedInstance.xmppStream!.myJID.bare)")
+                    debugPrint(stream.myJID)
+                    if stream.supportsInBandRegistration() {
+                        do {
+                            try stream.registerWithPassword(password)
+                        }
+                        catch let err {
+                            print("unable to register: \(err)")
+                        }
                     }
-                    catch let err {
-                        print("unable to register: \(err)")
-                    }
+                } else {
+                    self.NicknameView.hidden = false
+                    self.doneButton.enabled = true
+                    self.registerButton.hidden = true
+                    self.tabBarController?.selectedIndex = 1
                 }
             })
         }
     }
     
     func xmppStreamDidRegister(sender: XMPPStream!) {
+        self.tabBarController?.selectedIndex = 1
         print("Registration successful")
+        registerButton.enabled = true
     }
     
     func xmppStream(sender: XMPPStream!, didNotRegister error: DDXMLElement!) {
-        print("Error registering")
+        print("Error registering: \(error)")
+        let alertController = UIAlertController(title: "Sorry", message: "Unable to register: \(error)", preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
+            // do something
+        }))
+        self.presentViewController(alertController, animated: true, completion: nil)
+        OneChat.sharedInstance.disconnect()
+        registerButton.enabled = true
     }
     
     
