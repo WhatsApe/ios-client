@@ -11,19 +11,51 @@ import XMPPFramework
 import xmpp_messenger_ios
 
 
-class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate {
+class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UIImagePickerControllerDelegate,  UINavigationControllerDelegate {
     
+    @IBOutlet weak var saveProfileButton: UIButton!
     @IBOutlet weak var nicknameTextField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBAction func saveProfile(sender: AnyObject) {
         let newNickname = nicknameTextField.text
         let myvCard = OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp
         myvCard?.nickname = newNickname
-        OneChat.sharedInstance.xmppvCardTempModule?.updateMyvCardTemp(myvCard)        
+        let myImage = imageView.image!
+        let myAvatar:NSData = UIImagePNGRepresentation(myImage)!
+        myvCard?.photo = myAvatar
+        saveProfileButton.setTitle("Saving...", forState: UIControlState.Disabled)
+        saveProfileButton.enabled = false
+        OneChat.sharedInstance.xmppvCardTempModule?.updateMyvCardTemp(myvCard)
+    }
+    @IBOutlet var imageView: UIImageView!
+    
+    let imagePicker  = UIImagePickerController()
+    
+    @IBAction func selectPicture(sender: UIButton) {
+        let myvCard = OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp
+        myvCard?.nickname = nicknameTextField.text
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .PhotoLibrary
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        dismissViewControllerAnimated(true, completion: nil)
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imageView.contentMode = .ScaleAspectFit
+            imageView.image = resizeImage(pickedImage, targetSize: CGSize(width: 64, height: 64))
+            let myAvatar:NSData = UIImagePNGRepresentation(imageView.image!)!
+            OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp.photo = myAvatar
+        }
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imagePicker.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
         let tap = UITapGestureRecognizer(target: self, action: #selector(SettingsViewController.DismissKeyboard))
     }
@@ -35,9 +67,8 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate {
             usernameTextField.hidden = true
             passwordTextField.hidden = true
             NicknameView.hidden = false
+            updateUserFields()
             validateButton.setTitle("Disconnect", forState: UIControlState.Normal)
-            let myvCard = OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp
-            nicknameTextField.text = myvCard?.nickname
         } else if NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myJID) != "kXMPPmyJID" {
             doneButton.enabled = false
             passwordTextField.text = NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myPassword)
@@ -88,7 +119,6 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate {
     @IBOutlet weak var NicknameView: UIView!
     
     @IBAction func validate(sender: AnyObject) {
-//        let this = self
         if OneChat.sharedInstance.isConnected() {
             OneChat.sharedInstance.disconnect()
             doneButton.enabled = false
@@ -134,10 +164,12 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate {
     
     func xmppvCardTempModuleDidUpdateMyvCard(vCardTempModule: XMPPvCardTempModule!) {
         displayAlert("Success", message: "Your profile has been saved.")
+        saveProfileButton.enabled = true
     }
     
     func xmppvCardTempModule(vCardTempModule: XMPPvCardTempModule!, failedToUpdateMyvCard error: DDXMLElement!) {
         displayAlert("Unsuccessful", message: "Your profile has NOT been updated.")
+        saveProfileButton.enabled = true
     }
     
     func displayAlert(title: String, message: String) {
@@ -146,6 +178,28 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate {
             // do something
         }))
         self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+        
+        let rect = CGRectMake(0, 0, targetSize.width, targetSize.height)
+        
+        UIGraphicsBeginImageContextWithOptions(targetSize, false, 1.0)
+        image.drawInRect(rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+        
+    func updateUserFields() {
+        let myvCard = OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp
+        nicknameTextField.text = myvCard?.nickname
+        if myvCard?.photo != nil {
+            imageView.image = UIImage(data: (myvCard?.photo)!)
+        } else {
+            imageView.image = nil
+        }
     }
     
 }

@@ -18,7 +18,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UCj-d0-pzs" id="g6J-vj-wY9">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -52,7 +52,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hq6-eH-3kd" id="2zK-eT-C8P">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -163,6 +163,19 @@
                                             <action selector="saveProfile:" destination="sZH-JK-i2N" eventType="touchUpInside" id="f13-Hu-u4B"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pc-vV-654">
+                                        <rect key="frame" x="66" y="0.0" width="197" height="40"/>
+                                        <color key="backgroundColor" red="0.027908176310000001" green="0.4866067161" blue="0.91081730770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="Upload Profile Picture"/>
+                                        <connections>
+                                            <action selector="selectPicture:" destination="sZH-JK-i2N" eventType="touchUpInside" id="Oqp-GC-KbI"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yj7-Ic-PtH">
+                                        <rect key="frame" x="8" y="0.0" width="46" height="46"/>
+                                        <color key="backgroundColor" red="0.68283253205128203" green="0.68283253205128203" blue="0.68283253205128203" alpha="1" colorSpace="calibratedRGB"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration" identifier="NicknameView">
@@ -190,8 +203,10 @@
                     <connections>
                         <outlet property="NicknameView" destination="T9t-fs-uJb" id="G6r-eP-FHe"/>
                         <outlet property="doneButton" destination="Gig-wd-3ub" id="bir-fO-tUP"/>
+                        <outlet property="imageView" destination="yj7-Ic-PtH" id="Kri-XH-BrW"/>
                         <outlet property="nicknameTextField" destination="9cB-aZ-mLS" id="Zgc-ul-DiQ"/>
                         <outlet property="passwordTextField" destination="7n6-VV-EYL" id="usu-Sv-SoY"/>
+                        <outlet property="saveProfileButton" destination="KqP-kz-Rgw" id="wCY-aB-GhN"/>
                         <outlet property="usernameTextField" destination="wHg-fa-7bT" id="2or-7j-b0f"/>
                         <outlet property="validateButton" destination="zcI-mS-ezX" id="WeM-Ir-yac"/>
                     </connections>
