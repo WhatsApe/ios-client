@@ -22,6 +22,7 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        tableView.reloadData()
         OneRoster.sharedInstance.delegate = self
         if !NSUserDefaults.standardUserDefaults().boolForKey(kXMPP.stopConnection) {
             OneChat.sharedInstance.connect(username: kXMPP.myJID, password: kXMPP.myPassword) { (stream, error) -> Void in

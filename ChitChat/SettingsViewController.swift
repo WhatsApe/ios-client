@@ -13,16 +13,14 @@ import xmpp_messenger_ios
 
 class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, XMPPStreamDelegate {
     
+    var myvCard:XMPPvCardTemp?
+    
     @IBOutlet weak var saveProfileButton: UIButton!
     @IBOutlet weak var nicknameTextField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBAction func saveProfile(sender: AnyObject) {
         let newNickname = nicknameTextField.text
-        let myvCard = OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp
         myvCard?.nickname = newNickname
-        let myImage = imageView.image!
-        let myAvatar:NSData = UIImagePNGRepresentation(myImage)!
-        myvCard?.photo = myAvatar
         saveProfileButton.setTitle("Saving...", forState: UIControlState.Disabled)
         saveProfileButton.enabled = false
         OneChat.sharedInstance.xmppvCardTempModule?.updateMyvCardTemp(myvCard)
@@ -32,7 +30,6 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
     let imagePicker  = UIImagePickerController()
     
     @IBAction func selectPicture(sender: UIButton) {
-        let myvCard = OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp
         myvCard?.nickname = nicknameTextField.text
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .PhotoLibrary
@@ -45,12 +42,27 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
             imageView.contentMode = .ScaleAspectFit
             imageView.image = resizeImage(pickedImage, targetSize: CGSize(width: 64, height: 64))
             let myAvatar:NSData = UIImagePNGRepresentation(imageView.image!)!
-            OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp.photo = myAvatar
+            if myvCard != nil {
+                myvCard!.photo = myAvatar
+            } else {
+                let myvCard = XMPPvCardTemp()
+                myvCard.photo = myAvatar
+            }
         }
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func getvCard() -> XMPPvCardTemp {
+        if myvCard == nil && OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp == nil {
+            let vCardXML:DDXMLElement = DDXMLElement.init(name: "vCard", xmlns: "vcard-temp")
+            myvCard = XMPPvCardTemp.init(fromElement: vCardXML)
+        } else if myvCard == nil {
+            myvCard = OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp
+        }
+        return myvCard!
     }
     
     override func viewDidLoad() {
@@ -62,6 +74,7 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        myvCard = getvCard()
         OneChat.sharedInstance.xmppvCardTempModule?.addDelegate(self, delegateQueue: dispatch_get_main_queue())
         OneChat.sharedInstance.xmppStream?.addDelegate(self, delegateQueue: dispatch_get_main_queue())
         if OneChat.sharedInstance.isConnected() {
@@ -144,6 +157,7 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
                     self.presentViewController(alertController, animated: true, completion: nil)
                     OneChat.sharedInstance.disconnect()
                 } else {
+                    self.myvCard = nil
                     self.NicknameView.hidden = false
                     self.doneButton.enabled = true
                     self.registerButton.hidden = true
@@ -174,19 +188,26 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
                         }
                     }
                 } else {
+                    self.myvCard = nil
+                    self.registerButton.enabled = true
                     self.NicknameView.hidden = false
                     self.doneButton.enabled = true
                     self.registerButton.hidden = true
                     self.tabBarController?.selectedIndex = 1
+                    print("user already logged in")
                 }
             })
         }
     }
     
     func xmppStreamDidRegister(sender: XMPPStream!) {
-        self.tabBarController?.selectedIndex = 1
         print("Registration successful")
+        myvCard = nil
         registerButton.enabled = true
+        NicknameView.hidden = false
+        doneButton.enabled = true
+        registerButton.hidden = true
+        tabBarController?.selectedIndex = 1
     }
     
     func xmppStream(sender: XMPPStream!, didNotRegister error: DDXMLElement!) {
@@ -248,7 +269,6 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
     }
         
     func updateUserFields() {
-        let myvCard = OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp
         nicknameTextField.text = myvCard?.nickname
         if myvCard?.photo != nil {
             imageView.image = UIImage(data: (myvCard?.photo)!)
