@@ -13,6 +13,13 @@ import xmpp_messenger_ios
 
 class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, XMPPStreamDelegate {
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        // Initialize Tab Bar Item
+        tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "Settings-30"), tag: 0)
+    }
+    
     @IBOutlet weak var saveProfileButton: UIButton!
     @IBOutlet weak var nicknameTextField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
