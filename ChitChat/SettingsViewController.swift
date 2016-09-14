@@ -32,6 +32,8 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
     let imagePicker  = UIImagePickerController()
     
     @IBAction func selectPicture(sender: UIButton) {
+        let myvCard = OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp
+        myvCard?.nickname = nicknameTextField.text
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .PhotoLibrary
         presentViewController(imagePicker, animated: true, completion: nil)
