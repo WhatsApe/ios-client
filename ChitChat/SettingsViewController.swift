@@ -11,7 +11,7 @@ import XMPPFramework
 import xmpp_messenger_ios
 
 
-class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UIImagePickerControllerDelegate,  UINavigationControllerDelegate {
+class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, XMPPStreamDelegate {
     
     @IBOutlet weak var saveProfileButton: UIButton!
     @IBOutlet weak var nicknameTextField: UITextField!
@@ -63,6 +63,7 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         OneChat.sharedInstance.xmppvCardTempModule?.addDelegate(self, delegateQueue: dispatch_get_main_queue())
+        OneChat.sharedInstance.xmppStream?.addDelegate(self, delegateQueue: dispatch_get_main_queue())
         if OneChat.sharedInstance.isConnected() {
             usernameTextField.hidden = true
             passwordTextField.hidden = true
@@ -85,6 +86,7 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         OneChat.sharedInstance.xmppvCardTempModule?.removeDelegate(self)
+        OneChat.sharedInstance.xmppStream?.removeDelegate(self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -148,8 +150,30 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
     
     @IBAction func register(sender: UIButton) {
         if checkInputs() {
+            let username = "\(usernameTextField.text!)@localhost"
+            let password = passwordTextField.text!
             
+            OneChat.sharedInstance.connect(username: username, password: password, completionHandler: { (stream, error) in
+                print("Attempting registration for username \(OneChat.sharedInstance.xmppStream!.myJID.bare)")
+                debugPrint(stream.myJID)
+                if stream.supportsInBandRegistration() {
+                    do {
+                        try stream.registerWithPassword(password)
+                    }
+                    catch let err {
+                        print("unable to register: \(err)")
+                    }
+                }
+            })
         }
+    }
+    
+    func xmppStreamDidRegister(sender: XMPPStream!) {
+        print("Registration successful")
+    }
+    
+    func xmppStream(sender: XMPPStream!, didNotRegister error: DDXMLElement!) {
+        print("Error registering")
     }
     
     
