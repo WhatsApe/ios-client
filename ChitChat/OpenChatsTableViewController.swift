@@ -83,7 +83,7 @@ class OpenChatsTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.01
+        return 0.1
     }
     
     override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

@@ -13,5 +13,10 @@ class TabBarController : UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         selectedIndex = 1
+        
+        tabBar.items?.forEach({ (item) -> () in
+            item.image = item.selectedImage?.jsq_imageMaskedWithColor(UIColor.whiteColor())
+        })
+        
     }
 }

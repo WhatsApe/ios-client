@@ -88,9 +88,7 @@ class ContactListTableViewController: UITableViewController {
         } else {
             cell!.textLabel!.text = getUserDisplayName(user)
         }
-        
-        cell!.backgroundColor = .whiteColor()
-        
+    
         OneChat.sharedInstance.configurePhotoForCell(cell!, user: user)
         
         return cell!;

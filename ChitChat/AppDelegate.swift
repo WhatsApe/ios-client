@@ -25,8 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        UITabBarItem.appearance().setTitleTextAttributes({NSForegroundColorAttributeName: [UIColor whiteColor]}, forState: <#T##UIControlState#>)
-        
         // Override point for customization after application launch.
         return true
     }
