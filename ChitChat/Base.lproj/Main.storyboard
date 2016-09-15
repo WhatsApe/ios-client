@@ -108,6 +108,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="acj-I3-PU9"/>
                                 </constraints>
+                                <color key="textColor" red="0.41960784309999999" green="0.16078431369999999" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
@@ -119,6 +120,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="lJA-zU-iAO"/>
                                 </constraints>
+                                <color key="textColor" red="0.41960784309999999" green="0.16078431369999999" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
@@ -127,7 +129,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcI-mS-ezX">
                                 <rect key="frame" x="225" y="287" width="150" height="40"/>
-                                <color key="backgroundColor" red="0.027908176311929378" green="0.4866067160989202" blue="0.91081730769230773" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.18039215689999999" green="0.68235294120000001" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="Ffx-io-OVR"/>
                                 </constraints>
@@ -137,6 +139,24 @@
                                     <action selector="validate:" destination="sZH-JK-i2N" eventType="touchUpInside" id="SbT-YD-zBw"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aF6-Xy-Q06">
+                                <rect key="frame" x="225" y="366" width="150" height="40"/>
+                                <color key="backgroundColor" red="0.18039215689999999" green="0.68235294120000001" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="YkE-8C-Eb2"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="register:" destination="sZH-JK-i2N" eventType="touchUpInside" id="88d-ua-fJK"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="jabb-chat-text-n-monkey-fmonkey" translatesAutoresizingMaskIntoConstraints="NO" id="cnL-A2-Pdd">
+                                <rect key="frame" x="165" y="64" width="271" height="71"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="kVb-vC-bui"/>
+                                </constraints>
+                            </imageView>
                             <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T9t-fs-uJb">
                                 <rect key="frame" x="159" y="106" width="283" height="155"/>
                                 <subviews>
@@ -148,12 +168,13 @@
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Choose nickname" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9cB-aZ-mLS">
                                         <rect key="frame" x="104" y="57" width="159" height="30"/>
+                                        <color key="textColor" red="0.41960784309999999" green="0.16078431369999999" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KqP-kz-Rgw">
                                         <rect key="frame" x="66" y="107" width="150" height="40"/>
-                                        <color key="backgroundColor" red="0.027908176310000001" green="0.4866067161" blue="0.91081730770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.18039215689999999" green="0.68235294120000001" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="nIQ-pj-P0H"/>
                                         </constraints>
@@ -165,7 +186,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pc-vV-654">
                                         <rect key="frame" x="66" y="0.0" width="197" height="40"/>
-                                        <color key="backgroundColor" red="0.027908176310000001" green="0.4866067161" blue="0.91081730770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.18039215689999999" green="0.68235294120000001" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" title="Select Profile Picture"/>
                                         <connections>
@@ -182,26 +203,8 @@
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aF6-Xy-Q06">
-                                <rect key="frame" x="225" y="366" width="150" height="40"/>
-                                <color key="backgroundColor" red="0.027908176310000001" green="0.4866067161" blue="0.91081730770000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="YkE-8C-Eb2"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Register"/>
-                                <connections>
-                                    <action selector="register:" destination="sZH-JK-i2N" eventType="touchUpInside" id="88d-ua-fJK"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="jabb-chat-text-n-monkey-fmonkey" translatesAutoresizingMaskIntoConstraints="NO" id="cnL-A2-Pdd">
-                                <rect key="frame" x="165" y="64" width="271" height="71"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="kVb-vC-bui"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.96078431372549022" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="7n6-VV-EYL" firstAttribute="top" secondItem="wHg-fa-7bT" secondAttribute="bottom" constant="25" id="4ih-Zm-iTX"/>
                             <constraint firstItem="wHg-fa-7bT" firstAttribute="centerX" secondItem="eHx-QC-Psd" secondAttribute="centerX" id="QqW-43-5AF"/>
@@ -240,6 +243,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yTF-al-ij2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.18039215689999999" green="0.68235294120000001" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -259,6 +267,12 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CIc-PO-aEs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.18039215689999999" green="0.68235294120000001" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -278,6 +292,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="J9u-Zh-EQz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.18039215689999999" green="0.68235294120000001" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -295,7 +314,9 @@
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="89n-rB-8vP">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.98039215690000003" green="0.96078431369999995" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.18039215689999999" green="0.68235294120000001" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="rRj-yw-q4f" kind="relationship" relationship="viewControllers" id="fFd-bh-V0f"/>
