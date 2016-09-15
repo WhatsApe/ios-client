@@ -135,7 +135,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcI-mS-ezX">
                                 <rect key="frame" x="225" y="287" width="150" height="40"/>
-                                <color key="backgroundColor" red="0.18039215689999999" green="0.68235294120000001" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.43529411764705883" green="0.70196078431372544" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="Ffx-io-OVR"/>
                                 </constraints>
@@ -147,7 +147,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aF6-Xy-Q06">
                                 <rect key="frame" x="225" y="366" width="150" height="40"/>
-                                <color key="backgroundColor" red="0.18039215689999999" green="0.68235294120000001" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.43529411759999997" green="0.70196078429999997" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="YkE-8C-Eb2"/>
                                 </constraints>
@@ -180,7 +180,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KqP-kz-Rgw">
                                         <rect key="frame" x="66" y="107" width="150" height="40"/>
-                                        <color key="backgroundColor" red="0.18039215689999999" green="0.68235294120000001" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.43529411759999997" green="0.70196078429999997" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="nIQ-pj-P0H"/>
                                         </constraints>
@@ -192,7 +192,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pc-vV-654">
                                         <rect key="frame" x="66" y="0.0" width="197" height="40"/>
-                                        <color key="backgroundColor" red="0.18039215689999999" green="0.68235294120000001" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.43529411759999997" green="0.70196078429999997" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" title="Select Profile Picture"/>
                                         <connections>
