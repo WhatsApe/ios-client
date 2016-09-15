@@ -232,6 +232,7 @@
                         <outlet property="passwordTextField" destination="7n6-VV-EYL" id="usu-Sv-SoY"/>
                         <outlet property="registerButton" destination="aF6-Xy-Q06" id="h5Y-ay-nXm"/>
                         <outlet property="saveProfileButton" destination="KqP-kz-Rgw" id="wCY-aB-GhN"/>
+                        <outlet property="selectProfilePictureButton" destination="8pc-vV-654" id="zTf-GT-5VX"/>
                         <outlet property="usernameTextField" destination="wHg-fa-7bT" id="2or-7j-b0f"/>
                         <outlet property="validateButton" destination="zcI-mS-ezX" id="WeM-Ir-yac"/>
                     </connections>
