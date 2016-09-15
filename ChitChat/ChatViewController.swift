@@ -46,7 +46,7 @@ class ChatViewController: JSQMessagesViewController, ContactPickerDelegate, OneM
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.collectionView.backgroundColor = UIColor(red:0.98, green:0.96, blue:0.71, alpha:1.0)
+        self.collectionView.backgroundColor = UIColor(red:0.96, green:0.98, blue:0.98, alpha:1.0)
         
         if OneChat.sharedInstance.isConnected() {
             self.senderId = OneChat.sharedInstance.xmppStream?.myJID.bare()
