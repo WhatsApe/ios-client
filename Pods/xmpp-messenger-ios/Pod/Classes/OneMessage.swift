@@ -188,12 +188,13 @@ extension OneMessage: XMPPStreamDelegate {
 	
 	public func xmppStream(sender: XMPPStream, didReceiveMessage message: XMPPMessage) {
 		let user = OneChat.sharedInstance.xmppRosterStorage.userForJID(message.from(), xmppStream: OneChat.sharedInstance.xmppStream, managedObjectContext: OneRoster.sharedInstance.managedObjectContext_roster())
-		
+        
 		if !OneChats.knownUserForJid(jidStr: user.jidStr) {
 			OneChats.addUserToChatList(jidStr: user.jidStr)
 		}
 		
 		if message.isChatMessageWithBody() {
+            user.unreadMessages = NSNumber.init(int: user.unreadMessages.intValue + 1)
 			OneMessage.sharedInstance.delegate?.oneStream(sender, didReceiveMessage: message, from: user)
 		} else {
 			//was composing

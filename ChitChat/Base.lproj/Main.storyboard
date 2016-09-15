@@ -94,7 +94,7 @@
         <!--Settings-->
         <scene sceneID="rLL-h4-z1C">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="sZH-JK-i2N" customClass="SettingsViewController" customModule="ChitChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="sZH-JK-i2N" customClass="SettingsViewController" customModule="ChitChat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TZy-Gd-yQd"/>
                         <viewControllerLayoutGuide type="bottom" id="yZN-9V-k3L"/>
@@ -167,7 +167,7 @@
                                         <rect key="frame" x="66" y="0.0" width="197" height="40"/>
                                         <color key="backgroundColor" red="0.027908176310000001" green="0.4866067161" blue="0.91081730770000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="Upload Profile Picture"/>
+                                        <state key="normal" title="Select Profile Picture"/>
                                         <connections>
                                             <action selector="selectPicture:" destination="sZH-JK-i2N" eventType="touchUpInside" id="Oqp-GC-KbI"/>
                                         </connections>
@@ -194,29 +194,31 @@
                                     <action selector="register:" destination="sZH-JK-i2N" eventType="touchUpInside" id="88d-ua-fJK"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="jabb-chat-text-n-monkey-fmonkey" translatesAutoresizingMaskIntoConstraints="NO" id="cnL-A2-Pdd">
+                                <rect key="frame" x="165" y="64" width="271" height="71"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="kVb-vC-bui"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7n6-VV-EYL" firstAttribute="top" secondItem="wHg-fa-7bT" secondAttribute="bottom" constant="25" id="4ih-Zm-iTX"/>
                             <constraint firstItem="wHg-fa-7bT" firstAttribute="centerX" secondItem="eHx-QC-Psd" secondAttribute="centerX" id="QqW-43-5AF"/>
+                            <constraint firstItem="cnL-A2-Pdd" firstAttribute="centerX" secondItem="eHx-QC-Psd" secondAttribute="centerX" id="ZVE-xn-dC5"/>
                             <constraint firstItem="zcI-mS-ezX" firstAttribute="top" secondItem="7n6-VV-EYL" secondAttribute="bottom" constant="29" id="aqR-N0-Lzu"/>
                             <constraint firstItem="zcI-mS-ezX" firstAttribute="centerX" secondItem="eHx-QC-Psd" secondAttribute="centerX" id="bN5-c4-Err"/>
                             <constraint firstItem="aF6-Xy-Q06" firstAttribute="centerX" secondItem="eHx-QC-Psd" secondAttribute="centerX" id="u3d-Ej-EEh"/>
                             <constraint firstItem="T9t-fs-uJb" firstAttribute="centerX" secondItem="eHx-QC-Psd" secondAttribute="centerX" id="xFF-hO-K5w"/>
                             <constraint firstItem="7n6-VV-EYL" firstAttribute="centerX" secondItem="eHx-QC-Psd" secondAttribute="centerX" id="ypF-24-WKn"/>
+                            <constraint firstItem="cnL-A2-Pdd" firstAttribute="top" secondItem="TZy-Gd-yQd" secondAttribute="bottom" constant="10" id="zb9-Y4-cys"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Settings" id="0yL-9j-yeh">
-                        <barButtonItem key="leftBarButtonItem" title="Done" id="Gig-wd-3ub">
-                            <connections>
-                                <action selector="done:" destination="sZH-JK-i2N" id="Uo8-LO-i8I"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Settings" id="0yL-9j-yeh"/>
                     <connections>
                         <outlet property="NicknameView" destination="T9t-fs-uJb" id="G6r-eP-FHe"/>
-                        <outlet property="doneButton" destination="Gig-wd-3ub" id="bir-fO-tUP"/>
                         <outlet property="imageView" destination="yj7-Ic-PtH" id="Kri-XH-BrW"/>
+                        <outlet property="logoImage" destination="cnL-A2-Pdd" id="n3P-1s-VOH"/>
                         <outlet property="nicknameTextField" destination="9cB-aZ-mLS" id="Zgc-ul-DiQ"/>
                         <outlet property="passwordTextField" destination="7n6-VV-EYL" id="usu-Sv-SoY"/>
                         <outlet property="registerButton" destination="aF6-Xy-Q06" id="h5Y-ay-nXm"/>
@@ -308,6 +310,7 @@
     </scenes>
     <resources>
         <image name="Settings-30" width="30" height="30"/>
+        <image name="jabb-chat-text-n-monkey-fmonkey" width="366" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="TNI-Dp-ljp"/>

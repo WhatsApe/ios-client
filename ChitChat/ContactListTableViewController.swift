@@ -14,7 +14,7 @@ import UIKit
 import XMPPFramework
 import xmpp_messenger_ios
 
-class ContactListTableViewController: UITableViewController, OneRosterDelegate {
+class ContactListTableViewController: UITableViewController {
     
     var delegate:ContactPickerDelegate?
     
@@ -25,17 +25,16 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         OneRoster.sharedInstance.delegate = self
+        OneMessage.sharedInstance.delegate = self
+        OneChat.sharedInstance.xmppStream?.addDelegate(self, delegateQueue: dispatch_get_main_queue())
         tableView.reloadData()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         OneRoster.sharedInstance.delegate = nil
-    }
-    
-    func oneRosterContentChanged(controller: NSFetchedResultsController) {
-        //Will reload the tableView to reflect roster's changes
-        tableView.reloadData()
+        OneMessage.sharedInstance.delegate = nil
+        OneChat.sharedInstance.xmppStream?.removeDelegate(self)
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -81,17 +80,17 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
         let cell: UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("OneCellReuse", forIndexPath: indexPath)
         let user = OneRoster.userFromRosterAtIndexPath(indexPath: indexPath)
         
-        if let nickname = OneChat.sharedInstance.xmppvCardTempModule?.vCardTempForJID(user.jid, shouldFetch: false)?.nickname {
-            cell!.textLabel!.text = nickname;
+        cell?.imageView?.layer.cornerRadius = 24
+        cell?.imageView?.clipsToBounds = true
+        
+        if user.unreadMessages.integerValue > 0 {
+            cell!.textLabel!.text = "( \(user.unreadMessages.intValue) ) \(getUserDisplayName(user))"
         } else {
-            cell!.textLabel!.text = user.displayName;
+            cell!.textLabel!.text = getUserDisplayName(user)
         }
         
-        if user.unreadMessages.intValue > 0 {
-            cell!.backgroundColor = .orangeColor()
-        } else {
-            cell!.backgroundColor = .whiteColor()
-        }
+        cell!.backgroundColor = .whiteColor()
+        
         OneChat.sharedInstance.configurePhotoForCell(cell!, user: user)
         
         return cell!;
@@ -109,6 +108,41 @@ class ContactListTableViewController: UITableViewController, OneRosterDelegate {
         }
     }
 
+    func getUserDisplayName(user: XMPPUserCoreDataStorageObject) -> String {
+        if let nickname = OneChat.sharedInstance.xmppvCardTempModule?.vCardTempForJID(user.jid, shouldFetch: false)?.nickname {
+            return nickname;
+        } else {
+            return user.jid.user;
+        }
+    }
+    
+}
 
+extension ContactListTableViewController: XMPPStreamDelegate {
+    
+    func xmppStream(sender: XMPPStream!, didReceivePresence presence: XMPPPresence!) {
+        tableView.reloadData()
+    }
+    
+}
+
+extension ContactListTableViewController: OneMessageDelegate {
+    
+    func oneStream(sender: XMPPStream, didReceiveMessage message: XMPPMessage, from user: XMPPUserCoreDataStorageObject) {
+        tableView.reloadData()
+    }
+    
+    func oneStream(sender: XMPPStream, userIsComposing user: XMPPUserCoreDataStorageObject) {
+        return
+    }
+    
+}
+
+extension ContactListTableViewController: OneRosterDelegate {
+    
+    func oneRosterContentChanged(controller: NSFetchedResultsController) {
+        //Will reload the tableView to reflect roster's changes
+        tableView.reloadData()
+    }
     
 }

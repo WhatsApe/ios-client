@@ -11,15 +11,14 @@ import XMPPFramework
 import xmpp_messenger_ios
 
 
-class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, XMPPStreamDelegate {
+class SettingsViewController: UIViewController, UINavigationControllerDelegate {
     
     var myvCard:XMPPvCardTemp?
+    let imagePicker  = UIImagePickerController()
     
     @IBOutlet weak var saveProfileButton: UIButton!
     
     @IBOutlet weak var nicknameTextField: UITextField!
-    
-    @IBOutlet weak var doneButton: UIBarButtonItem!
     
     @IBOutlet var imageView: UIImageView!
     
@@ -27,19 +26,53 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
     
     @IBOutlet weak var passwordTextField: UITextField!
     
+    @IBOutlet weak var logoImage: UIImageView!
+    
     @IBOutlet weak var validateButton: UIButton!
     
     @IBOutlet weak var NicknameView: UIView!
     
     @IBOutlet weak var registerButton: UIButton!
     
-    let imagePicker  = UIImagePickerController()
-
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        saveProfileButton.setTitle("Saving...", forState: UIControlState.Disabled)
+        registerButton.setTitle("Registering...", forState: UIControlState.Disabled)
+        
+        imagePicker.delegate = self
+        _ = UITapGestureRecognizer(target: self, action: #selector(SettingsViewController.DismissKeyboard))
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        OneChat.sharedInstance.xmppvCardTempModule?.addDelegate(self, delegateQueue: dispatch_get_main_queue())
+        OneChat.sharedInstance.xmppStream?.addDelegate(self, delegateQueue: dispatch_get_main_queue())
+        
+        updateViewFields()
+        
+        if NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myJID) != "kXMPPmyJID" {
+            passwordTextField.text = NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myPassword)
+            let username = NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myJID)
+            guard let unwrappedUsername = username else {
+                usernameTextField.text = ""
+                return
+            }
+            usernameTextField.text = unwrappedUsername.componentsSeparatedByString("@")[0]
+        }
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        OneChat.sharedInstance.xmppvCardTempModule?.removeDelegate(self)
+        OneChat.sharedInstance.xmppStream?.removeDelegate(self)
+    }
     
     @IBAction func saveProfile(sender: AnyObject) {
         let newNickname = nicknameTextField.text
         myvCard?.nickname = newNickname
-        saveProfileButton.setTitle("Saving...", forState: UIControlState.Disabled)
         saveProfileButton.enabled = false
         OneChat.sharedInstance.xmppvCardTempModule?.updateMyvCardTemp(myvCard)
     }
@@ -51,149 +84,53 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
-    
     @IBAction func validate(sender: AnyObject) {
         if OneChat.sharedInstance.isConnected() {
             OneChat.sharedInstance.disconnect()
-            doneButton.enabled = false
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: kXMPP.stopConnection)
-            usernameTextField.hidden = false
-            passwordTextField.hidden = false
-            registerButton.hidden = false
-            validateButton.setTitle("Validate", forState: UIControlState.Normal)
-            NicknameView.hidden = true
+            updateViewFields()
         } else if checkInputs() {
             OneChats.self.clearChatsList()
-            NSUserDefaults.standardUserDefaults().setBool(false, forKey: kXMPP.stopConnection)
-            OneChat.sharedInstance.connect(username: self.usernameTextField.text! + "@localhost", password: self.passwordTextField.text!) { (stream, error) -> Void in
+            let username = "\(usernameTextField.text!)@localhost"
+            let password = passwordTextField.text!
+            
+            OneChat.sharedInstance.connect(username: username, password: password) { (stream, error) -> Void in
                 if let _ = error {
-                    let alertController = UIAlertController(title: "Sorry", message: "Username/Password did not match our records", preferredStyle: UIAlertControllerStyle.Alert)
-                    alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
-                        // do something
-                    }))
-                    self.presentViewController(alertController, animated: true, completion: nil)
+                    self.displayAlert("Sorry", message: "Username/Password did not match our records")
                     OneChat.sharedInstance.disconnect()
                 } else {
-                    self.myvCard = nil
-                    self.NicknameView.hidden = false
-                    self.doneButton.enabled = true
-                    self.registerButton.hidden = true
+                    NSUserDefaults.standardUserDefaults().setBool(false, forKey: kXMPP.stopConnection)
+                    self.updateViewFields()
                     self.tabBarController?.selectedIndex = 1
                 }
             }
         }
     }
     
-    @IBAction func done(sender: AnyObject) {
-        self.tabBarController?.selectedIndex = 1
-    }
-    
     @IBAction func register(sender: UIButton) {
         if checkInputs() {
+            OneChats.self.clearChatsList()
             let username = "\(usernameTextField.text!)@localhost"
             let password = passwordTextField.text!
-            registerButton.setTitle("Registering...", forState: UIControlState.Disabled)
             registerButton.enabled = false
             
             OneChat.sharedInstance.connect(username: username, password: password, completionHandler: { (stream, error) in
                 if let _ = error {
-                    print("Attempting registration for username \(OneChat.sharedInstance.xmppStream!.myJID.bare)")
-                    debugPrint(stream.myJID)
                     if stream.supportsInBandRegistration() {
                         do {
                             try stream.registerWithPassword(password)
                         }
                         catch let err {
                             print("unable to register: \(err)")
+                            stream.disconnect()
                         }
                     }
                 } else {
-                    self.myvCard = nil
-                    self.registerButton.enabled = true
-                    self.NicknameView.hidden = false
-                    self.doneButton.enabled = true
-                    self.registerButton.hidden = true
+                    self.updateViewFields()
                     self.tabBarController?.selectedIndex = 1
-                    print("user already logged in")
                 }
             })
         }
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        imagePicker.delegate = self
-        // Do any additional setup after loading the view, typically from a nib.
-        let tap = UITapGestureRecognizer(target: self, action: #selector(SettingsViewController.DismissKeyboard))
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        myvCard = getvCard()
-        OneChat.sharedInstance.xmppvCardTempModule?.addDelegate(self, delegateQueue: dispatch_get_main_queue())
-        OneChat.sharedInstance.xmppStream?.addDelegate(self, delegateQueue: dispatch_get_main_queue())
-        if OneChat.sharedInstance.isConnected() {
-            usernameTextField.hidden = true
-            passwordTextField.hidden = true
-            NicknameView.hidden = false
-            registerButton.hidden = true
-            updateUserFields()
-            validateButton.setTitle("Disconnect", forState: UIControlState.Normal)
-        } else if NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myJID) != "kXMPPmyJID" {
-            doneButton.enabled = false
-            registerButton.hidden = false
-            passwordTextField.text = NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myPassword)
-            let username = NSUserDefaults.standardUserDefaults().stringForKey(kXMPP.myJID)
-            guard let unwrappedUsername = username else {
-                print("error getting username")
-                usernameTextField.text = ""
-                return
-            }
-            usernameTextField.text = unwrappedUsername.componentsSeparatedByString("@")[0]
-        }
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        OneChat.sharedInstance.xmppvCardTempModule?.removeDelegate(self)
-        OneChat.sharedInstance.xmppStream?.removeDelegate(self)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        dismissViewControllerAnimated(true, completion: nil)
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imageView.contentMode = .ScaleAspectFit
-            imageView.image = resizeImage(pickedImage, targetSize: CGSize(width: 64, height: 64))
-            let myAvatar:NSData = UIImagePNGRepresentation(imageView.image!)!
-            if myvCard != nil {
-                myvCard!.photo = myAvatar
-            } else {
-                let myvCard = XMPPvCardTemp()
-                myvCard.photo = myAvatar
-            }
-        }
-    }
-    
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func getvCard() -> XMPPvCardTemp {
-        if myvCard == nil && OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp == nil {
-            let vCardXML:DDXMLElement = DDXMLElement.init(name: "vCard", xmlns: "vcard-temp")
-            myvCard = XMPPvCardTemp.init(fromElement: vCardXML)
-        } else if myvCard == nil {
-            myvCard = OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp
-        }
-        return myvCard!
     }
     
     func DismissKeyboard() {
@@ -214,48 +151,12 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
         return true
     }
     
-    func xmppStreamDidRegister(sender: XMPPStream!) {
-        print("Registration successful")
-        myvCard = nil
-        registerButton.enabled = true
-        NicknameView.hidden = false
-        doneButton.enabled = true
-        registerButton.hidden = true
-        tabBarController?.selectedIndex = 1
-    }
-    
-    func xmppStream(sender: XMPPStream!, didNotRegister error: DDXMLElement!) {
-        print("Error registering: \(error)")
-        let alertController = UIAlertController(title: "Sorry", message: "Unable to register: \(error)", preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
-            // do something
-        }))
-        self.presentViewController(alertController, animated: true, completion: nil)
-        OneChat.sharedInstance.disconnect()
-        registerButton.enabled = true
-    }
-    
     func checkInputs() -> Bool {
         if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
-            let alertController = UIAlertController(title: "Sorry", message: "Username/Password cannot be empty", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
-                // do something
-            }))
-            self.presentViewController(alertController, animated: true, completion: nil)
+            displayAlert("Sorry", message: "Username/Password cannot be empty")
             return false
         }
         return true
-    }
-    
-    func xmppvCardTempModuleDidUpdateMyvCard(vCardTempModule: XMPPvCardTempModule!) {
-        displayAlert("Success", message: "Your profile has been saved.")
-        saveProfileButton.enabled = true
-    }
-    
-    func xmppvCardTempModule(vCardTempModule: XMPPvCardTempModule!, failedToUpdateMyvCard error: DDXMLElement!) {
-        displayAlert("Unsuccessful", message: "Your profile has NOT been updated.")
-        debugPrint(error)
-        saveProfileButton.enabled = true
     }
     
     func displayAlert(title: String, message: String) {
@@ -267,18 +168,44 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
     }
     
     func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
-        
         let rect = CGRectMake(0, 0, targetSize.width, targetSize.height)
-        
         UIGraphicsBeginImageContextWithOptions(targetSize, false, 1.0)
         image.drawInRect(rect)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
         return newImage
     }
-        
-    func updateUserFields() {
+    
+    func updateViewFields() {
+        if OneChat.sharedInstance.isConnected() {
+            myvCard = nil
+            usernameTextField.hidden = true
+            passwordTextField.hidden = true
+            NicknameView.hidden = false
+            registerButton.hidden = true
+            registerButton.enabled = true
+            logoImage.hidden = true
+            validateButton.setTitle("Disconnect", forState: UIControlState.Normal)
+            for controller in (tabBarController?.viewControllers)! {
+                controller.tabBarItem.enabled = true
+            }
+            updateMyvCard()
+            updateProfileFields()
+        } else {
+            usernameTextField.hidden = false
+            passwordTextField.hidden = false
+            registerButton.hidden = false
+            registerButton.enabled = true
+            logoImage.hidden = false
+            NicknameView.hidden = true
+            validateButton.setTitle("Sign In", forState: UIControlState.Normal)
+            for controller in (tabBarController?.viewControllers)! {
+                controller.tabBarItem.enabled = false
+            }
+        }
+    }
+    
+    func updateProfileFields() {
         nicknameTextField.text = myvCard?.nickname
         if myvCard?.photo != nil {
             imageView.image = UIImage(data: (myvCard?.photo)!)
@@ -287,4 +214,61 @@ class SettingsViewController: UIViewController, XMPPvCardTempModuleDelegate, UII
         }
     }
     
+    func updateMyvCard() {
+        if myvCard == nil && OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp == nil {
+            let vCardXML:DDXMLElement = DDXMLElement.init(name: "vCard", xmlns: "vcard-temp")
+            myvCard = XMPPvCardTemp.init(fromElement: vCardXML)
+        } else if myvCard == nil {
+            myvCard = OneChat.sharedInstance.xmppvCardTempModule?.myvCardTemp
+        }
+    }
+    
+}
+
+extension SettingsViewController: UIImagePickerControllerDelegate {
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        dismissViewControllerAnimated(true, completion: nil)
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imageView.contentMode = .ScaleAspectFit
+            imageView.image = resizeImage(pickedImage, targetSize: CGSize(width: 64, height: 64))
+            let myAvatar:NSData = UIImagePNGRepresentation(imageView.image!)!
+            myvCard?.photo = myAvatar
+        }
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+}
+
+extension SettingsViewController: XMPPStreamDelegate {
+    
+    func xmppStreamDidRegister(sender: XMPPStream!) {
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: kXMPP.stopConnection)
+        updateViewFields()
+        tabBarController?.selectedIndex = 1
+    }
+    
+    func xmppStream(sender: XMPPStream!, didNotRegister error: DDXMLElement!) {
+        displayAlert("Sorry", message: "Unable to register: \(error.forwardedMessage())")
+        OneChat.sharedInstance.disconnect()
+        registerButton.enabled = true
+    }
+    
+}
+
+extension SettingsViewController: XMPPvCardTempModuleDelegate {
+    
+    func xmppvCardTempModuleDidUpdateMyvCard(vCardTempModule: XMPPvCardTempModule!) {
+        displayAlert("Success", message: "Your profile has been saved.")
+        saveProfileButton.enabled = true
+    }
+    
+    func xmppvCardTempModule(vCardTempModule: XMPPvCardTempModule!, failedToUpdateMyvCard error: DDXMLElement!) {
+        displayAlert("Unsuccessful", message: "Your profile has NOT been updated.")
+        saveProfileButton.enabled = true
+    }
+
 }

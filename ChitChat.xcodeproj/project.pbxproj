@@ -11,7 +11,6 @@
 		72CEDB451D8063F9005A3185 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CEDB441D8063F9005A3185 /* ChatViewController.swift */; };
 		72CEDB471D806407005A3185 /* ContactListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CEDB461D806407005A3185 /* ContactListTableViewController.swift */; };
 		C160D7F71D80169900E5D75C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C160D7F61D80169900E5D75C /* AppDelegate.swift */; };
-		C160D7F91D80169900E5D75C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C160D7F81D80169900E5D75C /* ViewController.swift */; };
 		C160D7FC1D80169900E5D75C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C160D7FA1D80169900E5D75C /* Main.storyboard */; };
 		C160D7FE1D80169900E5D75C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C160D7FD1D80169900E5D75C /* Assets.xcassets */; };
 		C160D8011D80169900E5D75C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C160D7FF1D80169900E5D75C /* LaunchScreen.storyboard */; };
@@ -28,7 +27,6 @@
 		852A8D84BC6DC7B8F9C84BEA /* Pods_ChitChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChitChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C160D7F31D80169900E5D75C /* ChitChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChitChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C160D7F61D80169900E5D75C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C160D7F81D80169900E5D75C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C160D7FB1D80169900E5D75C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C160D7FD1D80169900E5D75C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C160D8001D80169900E5D75C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -81,7 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				C160D7F61D80169900E5D75C /* AppDelegate.swift */,
-				C160D7F81D80169900E5D75C /* ViewController.swift */,
 				C160D8081D801B8100E5D75C /* OpenChatsTableViewController.swift */,
 				C160D80E1D801CB100E5D75C /* SettingsViewController.swift */,
 				72CEDB461D806407005A3185 /* ContactListTableViewController.swift */,
@@ -226,7 +223,6 @@
 			files = (
 				72CEDB471D806407005A3185 /* ContactListTableViewController.swift in Sources */,
 				C160D8091D801B8100E5D75C /* OpenChatsTableViewController.swift in Sources */,
-				C160D7F91D80169900E5D75C /* ViewController.swift in Sources */,
 				C160D7F71D80169900E5D75C /* AppDelegate.swift in Sources */,
 				EDCEB6AE1D86C7C5007ADF7B /* TabBarController.swift in Sources */,
 				72CEDB451D8063F9005A3185 /* ChatViewController.swift in Sources */,
