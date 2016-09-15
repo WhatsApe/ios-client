@@ -46,7 +46,7 @@ class SettingsViewController: UIViewController, UINavigationControllerDelegate {
         buttons.forEach { (button) -> () in
             button.layer.cornerRadius = 8
             button.layer.borderWidth = 1
-            button.layer.borderColor = UIColor(red:0.42, green:0.16, blue:0.02, alpha:1.0).CGColor
+            button.layer.borderColor = UIColor(red:0.60, green:0.49, blue:0.42, alpha:1.0).CGColor
         }
         
         imagePicker.delegate = self
@@ -195,8 +195,8 @@ class SettingsViewController: UIViewController, UINavigationControllerDelegate {
             registerButton.enabled = true
             logoImage.hidden = true
             validateButton.setTitle("Disconnect", forState: UIControlState.Normal)
-            validateButton.backgroundColor = UIColor(red:0.58, green:0.14, blue:0.21, alpha:1.0)
-            validateButton.layer.borderColor = UIColor(red:0.18, green:0.68, blue:0.64, alpha:1.0).CGColor
+//            validateButton.backgroundColor = UIColor(red:0.58, green:0.14, blue:0.21, alpha:1.0)
+//            validateButton.layer.borderColor = UIColor(red:0.18, green:0.68, blue:0.64, alpha:1.0).CGColor
             for controller in (tabBarController?.viewControllers)! {
                 controller.tabBarItem.enabled = true
             }
@@ -210,8 +210,8 @@ class SettingsViewController: UIViewController, UINavigationControllerDelegate {
             logoImage.hidden = false
             NicknameView.hidden = true
             validateButton.setTitle("Sign In", forState: UIControlState.Normal)
-            validateButton.backgroundColor = UIColor(red:0.18, green:0.68, blue:0.64, alpha:1.0)
-            validateButton.layer.borderColor = UIColor(red:0.42, green:0.16, blue:0.02, alpha:1.0).CGColor
+//            validateButton.backgroundColor = UIColor(red:0.44, green:0.70, blue:0.68, alpha:1.0)
+//            validateButton.layer.borderColor = UIColor(red:0.60, green:0.49, blue:0.42, alpha:1.0).CGColor
             for controller in (tabBarController?.viewControllers)! {
                 controller.tabBarItem.enabled = false
             }

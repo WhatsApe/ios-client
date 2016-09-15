@@ -226,6 +226,9 @@ class ChatViewController: JSQMessagesViewController, ContactPickerDelegate, OneM
     }
 
     func oneStream(sender: XMPPStream, didReceiveMessage message: XMPPMessage, from user: XMPPUserCoreDataStorageObject) {
+        if (self.isViewLoaded() && self.view.window != nil) {
+            user.unreadMessages = NSNumber.init(int: 0)
+        }
         if message.isChatMessageWithBody() {
             JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
             
