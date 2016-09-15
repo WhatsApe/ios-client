@@ -18,6 +18,7 @@ class ChatViewController: JSQMessagesViewController, ContactPickerDelegate, OneM
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        OneMessage.sharedInstance.delegate = self
         
         if let recipient = recipient {
             navigationItem.rightBarButtonItems = []
@@ -44,7 +45,8 @@ class ChatViewController: JSQMessagesViewController, ContactPickerDelegate, OneM
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        OneMessage.sharedInstance.delegate = self
+        
+        self.collectionView.backgroundColor = UIColor(red:0.96, green:0.98, blue:0.98, alpha:1.0)
         
         if OneChat.sharedInstance.isConnected() {
             self.senderId = OneChat.sharedInstance.xmppStream?.myJID.bare()
@@ -52,6 +54,18 @@ class ChatViewController: JSQMessagesViewController, ContactPickerDelegate, OneM
         }
         self.inputToolbar!.contentView!.leftBarButtonItem!.hidden = true
         self.collectionView!.collectionViewLayout.springinessEnabled = false
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        OneMessage.sharedInstance.delegate = nil
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if recipient != nil {
+            recipient?.unreadMessages = NSNumber.init(int: 0)
+        }
     }
     
     func didSelectContact(recipient: XMPPUserCoreDataStorageObject) {

@@ -10,7 +10,7 @@ import UIKit
 import XMPPFramework
 import xmpp_messenger_ios
 
-class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
+class OpenChatsTableViewController: UITableViewController {
     
     var delegate:ContactPickerDelegate?
     var chatList = NSArray()
@@ -24,6 +24,7 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
         super.viewWillAppear(animated)
         tableView.reloadData()
         OneRoster.sharedInstance.delegate = self
+        OneMessage.sharedInstance.delegate = self
         if !NSUserDefaults.standardUserDefaults().boolForKey(kXMPP.stopConnection) {
             OneChat.sharedInstance.connect(username: kXMPP.myJID, password: kXMPP.myPassword) { (stream, error) -> Void in
                 if let _ = error {
@@ -32,7 +33,7 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
                     //set up online UI
                 }
             }
-        } else {
+        } else if !OneChat.sharedInstance.isConnected() {
             self.tabBarController?.selectedIndex = 2
         }
     }
@@ -40,21 +41,7 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         OneRoster.sharedInstance.delegate = nil
-    }
-    
-    // REDUNDANT
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        if identifier == "chat.to.add" {
-            if !OneChat.sharedInstance.isConnected() {
-                let alert = UIAlertController(title: "Attention", message: "You have to be connected to start a chat", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                
-                self.presentViewController(alert, animated: true, completion: nil)
-                
-                return false
-            }
-        }
-        return true
+        OneMessage.sharedInstance.delegate = nil
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
@@ -69,10 +56,6 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
         delegate?.didSelectContact(OneChats.getChatsList()[indexPath.row] as! XMPPUserCoreDataStorageObject)
     }
     
-    func oneRosterContentChanged(controller: NSFetchedResultsController) {
-        tableView.reloadData()
-    }
-    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return OneChats.getChatsList().count
     }
@@ -85,27 +68,54 @@ class OpenChatsTableViewController: UITableViewController, OneRosterDelegate {
         let cell: UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("OneCellReuse", forIndexPath: indexPath)
         let user = OneChats.getChatsList().objectAtIndex(indexPath.row) as! XMPPUserCoreDataStorageObject
         
-        if let nickname = OneChat.sharedInstance.xmppvCardTempModule?.vCardTempForJID(user.jid, shouldFetch: false)?.nickname {
-            cell!.textLabel!.text = nickname;
-        } else {
-            cell!.textLabel!.text = user.displayName;
-        }
-        
         OneChat.sharedInstance.configurePhotoForCell(cell!, user: user)
         
         cell?.imageView?.layer.cornerRadius = 24
         cell?.imageView?.clipsToBounds = true
         
+        if user.unreadMessages.integerValue > 0 {
+            cell!.textLabel!.text = "( \(user.unreadMessages.intValue) ) \(getUserDisplayName(user))"
+        } else {
+            cell!.textLabel!.text = getUserDisplayName(user)
+        }
+        
         return cell!
     }
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.01
+        return 0.1
     }
     
     override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
     }
-            
+    
+    func getUserDisplayName(user: XMPPUserCoreDataStorageObject) -> String {
+        if let nickname = OneChat.sharedInstance.xmppvCardTempModule?.vCardTempForJID(user.jid, shouldFetch: false)?.nickname {
+            return nickname;
+        } else {
+            return user.jid.user;
+        }
+    }
+    
+}
+
+extension OpenChatsTableViewController: OneMessageDelegate {
+    
+    func oneStream(sender: XMPPStream, didReceiveMessage message: XMPPMessage, from user: XMPPUserCoreDataStorageObject) {
+        tableView.reloadData()
+    }
+    
+    func oneStream(sender: XMPPStream, userIsComposing user: XMPPUserCoreDataStorageObject) {
+        return
+    }
+    
+}
+
+extension OpenChatsTableViewController: OneRosterDelegate {
+    
+    func oneRosterContentChanged(controller: NSFetchedResultsController) {
+        tableView.reloadData()
+    }
     
 }

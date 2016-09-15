@@ -14,5 +14,9 @@ class TabBarController : UITabBarController {
         super.viewDidLoad()
         selectedIndex = 1
         
+//        tabBar.items?.forEach({ (item) -> () in
+//            item.image = item.selectedImage?.jsq_imageMaskedWithColor(UIColor.blackColor())
+//        })
+        
     }
 }
